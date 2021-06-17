@@ -1,0 +1,26 @@
+footer{
+    background:#ccc;
+    position:absolute;
+    bottom:0;
+    width:100%;
+    height:75px;
+}
+
+.footer_text { /* Dernier élément de la page, copyright et mentions légales */
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    font-size: 20px;
+}
+
+.notices { /* Texte mention légale */
+    text-decoration: none; /* enlevé la décoration de base */
+    color: white;
+    color: var(--text-color);
+}
+
+#notices:hover { /* Survole du texte mention légale */
+    text-decoration: none;
+    color: rgb(248, 0, 0);
+    transition: 0.2s ease;
+}
