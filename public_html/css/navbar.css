@@ -1,0 +1,16 @@
+.navbar {
+    padding: 0;
+    height: 5rem;
+    width: 100%;
+    position: fixed;
+    background-color: black;
+}
+
+.navbar-nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
