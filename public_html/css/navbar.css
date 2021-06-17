@@ -1,16 +1,41 @@
+:root {
+    --navbar-primary: #CCCCCC;
+}
+
 .navbar {
     padding: 0;
     height: 5rem;
     width: 100%;
     position: fixed;
-    background-color: black;
+    background-color: var(--navbar-primary);
 }
 
 .navbar-nav {
     list-style: none;
     padding: 0;
     margin: 0;
+    height: 100%;
     display: flex;
     flex-direction: row;
+    justify-content: flex-start;
+}
+
+.navbar-item {
+    width: auto;
+    height: 100%;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    text-decoration: none;
+}
+
+.link-text {
+    white-space: nowrap;
+}
+
+.link-icon {
     height: 100%;
 }
