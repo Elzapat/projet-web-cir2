@@ -4,10 +4,10 @@
 }
 
 .navbar {
+    top: 0;
     padding: 0;
     height: 5rem;
     width: 100%;
-    position: fixed;
     background-color: var(--navbar-primary);
     font-size: 1.7rem;
 }

@@ -1,22 +1,26 @@
-footer{
-    background:#ccc;
-    position:absolute;
-    bottom:0;
-    width:100%;
-    height:75px;
+body {
+    display: flex;
+    flex-flow: column nowrap;
+    min-height: 100vh;
 }
 
-.footer_text { /* Dernier élément de la page, copyright et mentions légales */
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%, 0%);
-    font-size: 20px;
+footer {
+    display: flex;
+    flex-flow: column nowrap;
+    background: #ccc;
+    width: 100%;
+    height: 75px;
+    font-size: 1.5rem;
+    justify-content: flex-end;
+}
+
+.footer-text { /* Dernier élément de la page, copyright et mentions légales */
+    text-align: center;
 }
 
 .notices { /* Texte mention légale */
     text-decoration: none; /* enlevé la décoration de base */
-    color: white;
-    color: var(--text-color);
+    color: black;
 }
 
 #notices:hover { /* Survole du texte mention légale */
