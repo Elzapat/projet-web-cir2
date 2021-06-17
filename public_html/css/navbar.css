@@ -22,10 +22,6 @@
     align-items: center;
 }
 
-.navbar-nav:last-child > .navbar-item > .nav-link > .link-icon {
-    background-color: black;
-}
-
 .navbar-item {
     height: 100%;
     width: auto;
@@ -33,7 +29,7 @@
     padding: 0 1rem 0 1rem;
 }
 
-.navbar-item:hover {
+.navbar-item:hover:not(.navbar-item:first-child) {
     background-color: var(--navbar-hover);
 }
 
@@ -50,7 +46,17 @@
 }
 
 .link-icon {
-    height: 80%;
+    height: 60%;
+    padding-right: 1rem;
+}
+
+.navbar-item:first-child > .nav-link > .link-icon {
+    padding-right: 0;
+}
+
+.navbar-item:last-child > .nav-link > .link-icon {
+    padding-right: 0;
+    padding-left: 1rem;
 }
 
 #connect {
