@@ -1,5 +1,6 @@
 :root {
     --navbar-primary: #CCCCCC;
+    --navbar-hover: #BBBBBB;
 }
 
 .navbar {
@@ -8,6 +9,7 @@
     width: 100%;
     position: fixed;
     background-color: var(--navbar-primary);
+    font-size: 1.7rem;
 }
 
 .navbar-nav {
@@ -17,18 +19,29 @@
     height: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    align-items: center;
+}
+
+.navbar-nav:last-child > .navbar-item > .nav-link > .link-icon {
+    background-color: black;
 }
 
 .navbar-item {
-    width: auto;
     height: 100%;
+    width: auto;
+    transition: background-color 400ms ease;
+    padding: 0 1rem 0 1rem;
+}
+
+.navbar-item:hover {
+    background-color: var(--navbar-hover);
 }
 
 .nav-link {
     display: flex;
     align-items: center;
     height: 100%;
+    width: auto;
     text-decoration: none;
 }
 
@@ -37,5 +50,9 @@
 }
 
 .link-icon {
-    height: 100%;
+    height: 80%;
+}
+
+#connect {
+    margin-left: auto;
 }

@@ -2,4 +2,10 @@
     --primary-color: #CCCCCC;
     --accent-color: #EEEEEE;
     --text-color: #FFFFFF;
+    font-family: "Open Sans";
+    font-size: 12px;
+}
+
+* {
+    box-sizing: border-box;
 }
