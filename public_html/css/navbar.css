@@ -1,6 +1,7 @@
 :root {
-    --navbar-primary: #CCCCCC;
-    --navbar-hover: #BBBBBB;
+    --navbar-primary: #00B000;
+    --navbar-secondary: #020202;
+    --navbar-hover: #00A000;
 }
 
 .navbar {
@@ -43,11 +44,17 @@
 
 .link-text {
     white-space: nowrap;
+    color: var(--navbar-secondary);
 }
 
 .link-icon {
-    height: 60%;
+    height: 40%;
     padding-right: 1rem;
+    color: var(--navbar-secondary);
+}
+
+#logo {
+    height: 80%;
 }
 
 .navbar-item:first-child > .nav-link > .link-icon {
