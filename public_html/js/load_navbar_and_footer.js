@@ -1,4 +1,4 @@
-fetch("html/navbar.html")
+fetch("navbar.html")
     .then(response => {
         return response.text()
     })
@@ -6,7 +6,7 @@ fetch("html/navbar.html")
         document.querySelector("nav").innerHTML = data;
     });
 
-fetch("html/footer.html")
+fetch("footer.html")
     .then(response => {
         return response.text()
     })
