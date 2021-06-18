@@ -5,3 +5,8 @@ body {
 main {
     flex: 1;
 }
+  
+.connect_form {
+    width: 20vw;
+    margin: 15vh auto;
+}

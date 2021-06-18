@@ -1,0 +1,17 @@
+button {
+    border: none;
+    font-size: 140%;
+    margin-top: 15%;
+    background: rgb(0, 170, 51);
+    cursor: pointer;
+    border-radius: 1px;
+    height: 5%;
+    width: 100%;
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.2);
+}
+
+button:hover {
+    box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 0.2);
+}
