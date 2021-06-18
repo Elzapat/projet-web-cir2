@@ -1,3 +1,5 @@
+// Get all the ISEN places
+
 // Get all the elements with the dest-choice class
 let choice_buttons = document.getElementsByClassName("dest-choice");
 // Loop over the elements and add an event when they're clicked
@@ -10,6 +12,9 @@ for (let button of choice_buttons) {
         event.target.classList.add("selected");
 
         if (event.target.value == "from_ISEN") {
+            let start_loc_container = document.getElementById("start-loc");
+            start_loc_container.innerHTML = ""
+        } else if (event.target.value == "to_ISEN") {
             let end_loc_container = document.getElementById("end-loc");
             end_loc_container.innerHTML = "";
         }
@@ -32,6 +37,13 @@ document.getElementById("search-trip").onsubmit = () => {
         error_placeholder.style.opacity = 1;
         return false;
     }
+
+    let footer_height = getComputedStyle(document.getElementsByClassName("footer")[0]).height;
+    let navbar_height = getComputedStyle(document.getElementsByClassName("navbar")[0]).height;
+    let container = document.getElementById("search-trip");
+    container.style.borderRadius = 0;
+    container.style.width = "100%";
+    container.style.height = `calc(100vh - ${footer_height} - ${navbar_height})`;
 
     return false;
 }

@@ -1,7 +1,7 @@
 <?php
 
 include_once "utils.php";
-include_once "../db_connector.php";
+include_once "../../../database/db_connector.php";
 include_once "../constants.php";
 
 function get_request($request_ressource) {
@@ -9,7 +9,7 @@ function get_request($request_ressource) {
         $db = new dbConnector; 
     } catch (PDOException $e) {
         error_log("Database error: " . $e->getMessage());
-        send_response(null, 500);
+        send_response(null, 503);
     }
 
     switch ($request_ressource) {

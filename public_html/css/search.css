@@ -11,8 +11,8 @@ main {
 
 #search-trip {
     background-color: var(--background-color);
-    width: 70%;
-    height: 70vh;
+    width: 60%;
+    height: 60vh;
     margin: auto;
     border-radius: 20px;
     display: flex;
@@ -46,9 +46,9 @@ main {
     background-color: var(--background-color);
 }
 
-#search-trip > .search-row > input {
-    width: 20%;
+.date {
     font-size: 2rem;
+    width: 25%;
 }
 
 #search {
@@ -64,9 +64,14 @@ main {
     color: red;
 }
 
-#start-loc, #end-lock {
+#start-loc, #end-loc {
     margin: 0;
     padding: 0;
     width: 25%;
     height: 100%;
+}
+
+.location {
+    width: 100%;
+    font-size: 2rem;
 }

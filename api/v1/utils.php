@@ -1,21 +1,29 @@
 <?php
 
-function send_response($data, $code) {
+function send_response($data, $code, $type = "application/json") {
     $messages = array(
         200 => "OK",
         400 => "Bad Request",
-        500 => "Internal Server Error"
+        401 => "Unauthorized",
+        500 => "Internal Server Error",
+        503 => "Service Unavailable"
     );
 
-    // Headers de la requête
-    header("Content-Type: application/json; charset=utf8");
+    // Request headers
+    header("Content-Type: $type; charset=utf8");
     header("Cache-control: no-store, no-cache, must-revalidate");
     header("Pragma: no-cache");
     header("HTTP/1.1 $code " . $messages[$code]);
 
-    // Si les données existent, elles sont encodées en JSON et envoyées au client
-    if (isset($data))
-        echo json_encode($data);
+    // If the data isn't set, exit without sending data
+    if (!isset($data))
+        exit;
+
+    // If the data type is JSON, send the data as JSON
+    if (str_contains($type, "json"))
+        echo json_encode($data)
+    else
+        echo $data;
 
     exit;
 }
