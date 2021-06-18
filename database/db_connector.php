@@ -20,9 +20,40 @@ class dbConnector {
 
     }
 
+    public function get_isen_locations() {
+        try {
+            $request = "SELECT v.nom FROM ville v
+                        JOIN site_isen s ON v.code_insee = s.code_insee";
+            $stmt = $this->db->prepare($request);
+            $stmt->execute();
+            $result = $stmt->fetch();
+        } catch (PDOException $e) {
+            error_log("Request error . " $e->getMessage());
+            return false;
+        }
+
+        return isset($result) ? $result : false;
+    }
+
     public function add_user($first_name, $last_name, $password,
             $phone, $username) {
+        try {
+            $request = "INSERT INTO utilisateur VALUES
+                    (pseudo, nom, prenom, mot_de_passe, num_tel, jeton_auth)
+                    (:pseudo, :nom, :prenom, sha1(:mdp), :num_tel, NULL)";  
+            $stmt = $this->db->prepare($request);
+            $stmt->bindParam(":pseudo", $username, PDO::PARAM_STR, 25):
+            $stmt->bindParam(":nom", $last_name, PDO::PARAM_STR, 100):
+            $stmt->bindParam(":prenom", $first_name, PDO::PARAM_STR, 100):
+            $stmt->bindParam(":mpd", $password, PDO::PARAM_STR, 40):
+            $stmt->bindParam(":num_tel", $phone, PDO::PARAM_STR, 20):
+            $stmt->execute();
+        } catch (PDOException $e) {
+            error_log("Request error: " . $e->getMessage());
+            return false;
+        }
 
+        return true;
     }
 
     public function add_trip($creator, $price, $seats, $start_datetime,
