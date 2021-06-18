@@ -6,8 +6,9 @@ main {
     flex: 1;
 }
 
-.search {
+.search-trip {
     background-color: black;
     width: 80%;
-    height: 70vh:
+    height: 70vh;
+    margin: auto;
 }
