@@ -4,9 +4,23 @@ body {
 
 main {
     flex: 1;
+    background-color: white;
 }
   
-.connect_form {
+.connect-form {
     width: 20vw;
     margin: 15vh auto;
+}
+
+.connect-form > button {
+    font-size: 1.6rem;
+    margin-top: 15%;
+    height: 3rem;
+    width: 100%;
+}
+
+.connect-form > input {
+    padding-top: 15%;
+    font-size: 2rem;
+    width: 100%;
 }

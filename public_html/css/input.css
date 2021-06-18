@@ -1,25 +1,21 @@
-.input_text {
-    width: 100%;
-    font-size: 2rem;
+.input-text {
     border: none;
-    padding-top: 15%;
     border-bottom: solid 1px #00781A;
     color: #00781A;
 }
 
-.input_text::-webkit-input-placeholder {
+.input-text::-webkit-input-placeholder {
     -webkit-transition: all 0.3s ease-in-out;
             transition: all 0.3s ease-in-out;
 }
 
-
-.input_text:focus, .input_text:valid {
+.input-text:focus, .input-text:valid {
     box-shadow: none;
     outline: none;
     background-position: 0 0;
 }
 
-.input_text:focus::-webkit-input-placeholder, .input_text:valid::-webkit-input-placeholder {
+.input-text:focus::-webkit-input-placeholder, .input-text:valid::-webkit-input-placeholder {
     color: #00781A;
     font-size: 45%;
     -webkit-transform: translateY(-2rem);

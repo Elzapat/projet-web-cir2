@@ -1,7 +1,8 @@
 :root {
     --primary-color: #CCCCCC;
-    --accent-color: #EEEEEE;
-    --text-color: #FFFFFF;
+    --accent-color: #00C100;
+    --background-color: white;
+    --text-color: #46644F;
     font-family: "Open Sans";
     font-size: 12px;
 }
