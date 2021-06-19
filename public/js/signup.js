@@ -28,10 +28,14 @@ document.getElementsByClassName("sign-up")[0].onsubmit = () => {
                 method: "POST",
                 body: JSON.stringify({ username: username, first_name: first_name,
                         last_name: last_name, password: password, phone, phone })
-            }).then(response => {
-                console.log(response.status);
-                return response.text();
-            }).then(res => console.log(res));
+            })
+            .then(response => response.text())
+            .then(creation_success => {
+                if (!creation_success)
+                    throw new Error("Errur à la création du compte");
+                error_container.innerHTML = "Compte créé avec succès";
+                error_container.style.opacity = 1;
+            });
         })
         .catch(error => {
             error_container.innerHTML = error.message;
