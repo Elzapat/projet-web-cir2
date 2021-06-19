@@ -14,7 +14,8 @@ document.getElementsByClassName("sign-up")[0].onsubmit = () => {
         return false;
     }
 
-    fetch(`../../api/v1/request.php/utilisateurs/pseudo/${username}`, { method: "GET"})
+    console.log(document.location);
+    fetch(`../api/v1/request.php/utilisateurs/pseudo/${username}`, { method: "GET"})
         .then(response => {
             if (!response.ok)
                 throw new Error("Erreur interne");
@@ -24,7 +25,7 @@ document.getElementsByClassName("sign-up")[0].onsubmit = () => {
             console.log(user_exists);
             if (user_exists)
                 throw new Error("Ce pseudo est déjà pris");
-            return fetch("../../api/v1/request.php/utilisateurs", {
+            return fetch("../api/v1/request.php/utilisateurs", {
                 method: "POST",
                 body: JSON.stringify({ username: username, first_name: first_name,
                         last_name: last_name, password: password, phone, phone })
