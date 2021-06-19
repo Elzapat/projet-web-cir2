@@ -7,18 +7,33 @@
         <link rel="stylesheet" href="css/constants.css">
         <link rel="stylesheet" href="css/navbar.css">
         <link rel="stylesheet" href="css/footer.css">
-        <link rel="stylesheet" href="css/signin.css">
+        <link rel="stylesheet" href="css/signup.css">
+        <link rel="stylesheet" href="css/button.css">
+        <link rel="stylesheet" href="css/input.css">
 
         <!-- Page font -->
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap" rel="stylesheet"/>
 
         <!-- Script to load the navbar and footer -->
         <script src="js/load_navbar_and_footer.js" defer></script>
+
+        <!-- Script to manage signing up -->
+        <script src="js/signup.js" defer></script>
     </head>
     <body>
         <nav class="navbar">
         </nav>
         <main>
+            <form class="sign-up">
+                <input id="username" class="input-text" type="text" placeholder="Pseudonyme" maxlength="20" required></input>
+                <input id="first-name" class="input-text" type="text" placeholder="Prénom" maxlength="100" required></input>
+                <input id="last-name" class="input-text" type="text" placeholder="Nom" maxlength="100" required></input>
+                <input id="password" class="input-text" type="password" placeholder="Mot de passe" maxlength="40" required></input>
+                <input id="password-confirm" class="input-text" type="password" placeholder="Confirmation mot de passe" maxlength="40" required></input>
+                <input id="phone" class="input-text" type="text" placeholder="Numéro de téléphone" required></input>
+                <span id="error">Error</span>
+                <button type="submit">S'inscrire</button>
+            </form>
         </main>
         <footer class="footer">
         </footer>

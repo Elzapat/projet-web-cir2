@@ -1,9 +1,9 @@
 <?php
 
-include_once "../../utils.php";
-include_once "ressources/users.php";
-include_once "ressources/trips.php";
-include_once "ressources/isen_locations.php"
+include_once $_SERVER["DOCUMENT_ROOT"] . "/api/v1/ressources/users.php";
+include_once $_SERVER["DOCUMENT_ROOT"] . "/api/v1/ressources/trips.php";
+include_once $_SERVER["DOCUMENT_ROOT"] . "/api/v1/ressources/isen_locations.php";
+include_once $_SERVER["DOCUMENT_ROOT"] . "/utils.php";
 
 // On récupère le lien après le fichier PHP et on retire le premier slash
 $request = substr($_SERVER["PATH_INFO"], 1);
@@ -17,10 +17,10 @@ $request_method = $_SERVER["REQUEST_METHOD"];
 
 switch ($request_ressource) {
     case "utilisateurs":
-        users($request_method);
+        users($request_method, $request);
     case "trajets":
-        trips($request_method)
-    case "isen_locations":
+        trips($request_method);
+    case "locations_isen":
         isen_locations($request_method);
     default:
         send_response(null, 400);

@@ -1,8 +1,8 @@
 <?php
 
-include_once "../../../utils.php";
-include_once "../../../database/db_connector.php";
-include_once "../../../constants.php";
+include_once $_SERVER["DOCUMENT_ROOT"] . "/utils.php";
+include_once $_SERVER["DOCUMENT_ROOT"] . "/database/db_connector.php";
+include_once $_SERVER["DOCUMENT_ROOT"] . "/constants.php";
 
 function trips($request_method) {
     try {

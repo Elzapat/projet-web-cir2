@@ -1,10 +1,10 @@
 <?php
 
-include_once "../../../utils.php";
-include_once "../../../database/db_connector.php";
-include_once "../../../constants.php";
+include_once $_SERVER["DOCUMENT_ROOT"] . "/utils.php";
+include_once $_SERVER["DOCUMENT_ROOT"] . "/database/db_connector.php";
+include_once $_SERVER["DOCUMENT_ROOT"] . "/constants.php";
 
-function users($request_method) {
+function users($request_method, $request) {
     try {
         $db = new dbConnector; 
     } catch (PDOException $e) {
@@ -13,15 +13,23 @@ function users($request_method) {
     }
 
     switch ($request_method) {
+        case "GET":
+            if ($request[0] == "pseudo" || isset($request[1])) {
+                $data = $db->check_username_existence($request[1]);
+                send_response($data, isset($data) ? 200 : 400);
+            } else {
+                send_response(null, 400);
+            }
         case "POST":
-            if (!isset($_POST["first_name"]) || !isset($_POST["last_name"]) ||
-                    !isset($_POST["password"]) || !isset($_POST["phone"]) ||
-                    !isset($_POST["username"])) {
+            $req = json_decode(file_get_contents("php://input"), true);
+            if (!isset($req["first_name"]) || !isset($req["last_name"]) ||
+                    !isset($req["password"]) || !isset($req["phone"]) ||
+                    !isset($req["username"])) {
                 send_response(null, 400); 
             }
 
-            $data = $db->add_user($_POST["first_name"], $_POST["last_name"],
-                $_POST["password"], $_POST["phone"], $_POST["username"]);
+            $data = $db->add_user($req["first_name"], $req["last_name"],
+                $req["password"], $req["phone"], $req["username"]);
 
             send_response($data, $data ? 200 : 500);
         default:
