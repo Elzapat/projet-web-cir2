@@ -8,7 +8,7 @@ main {
     display: flex;
 }
   
-.connect-form {
+.sign-in {
     width: 20vw;
     margin: auto;
     display: flex;
@@ -16,13 +16,13 @@ main {
     align-items: center;
 }
 
-.connect-form > button {
+.sign-in > button {
     font-size: 2rem;
     height: 4rem;
     width: 25vw;
 }
 
-.connect-form > input {
+.sign-in > input {
     padding-top: 15%;
     font-size: 2rem;
     width: 25vw;
@@ -36,9 +36,10 @@ input[type="password"] {
     margin-top: 0.5rem;
 }
 
-#error {
+#info {
     font-size: 1.5rem;
     color: red;
     opacity: 0;
     transition: 400ms ease;
+    white-space: nowrap;
 }

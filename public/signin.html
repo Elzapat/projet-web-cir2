@@ -10,10 +10,17 @@
         <link rel="stylesheet" href="css/signin.css">
         <link rel="stylesheet" href="css/button.css">
         <link rel="stylesheet" href="css/input.css">
-
         <!-- Page font -->
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap" rel="stylesheet"/>
+        <!-- Page icon -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap" rel="stylesheet"/>
 
+        <!-- Script to manage cookies -->
+        <script src="js/cookies.js" defer></script>
+        <!-- Script to authenticate -->
+        <script src="js/authentification.js" defer></script>
+        <!-- Script to manage signing in -->
+        <script src="js/signin.js" defer></script>
         <!-- Script to load the navbar and footer -->
         <script src="js/load_navbar_and_footer.js" defer></script>
     </head>
@@ -21,16 +28,13 @@
         <nav class="navbar">
         </nav>
         <main>
-            
-            <form class="connect-form">
-                <input class="input-text" placeholder="Pseudo" type="text" required="">
-                <input class="input-text" placeholder="Mot de passe" type="password" required="">
-                
-                <span id="error">Error</span>
+            <form class="sign-in">
+                <input id="login" class="input-text" placeholder="Pseudo" type="text" required>
+                <input id="password" class="input-text" placeholder="Mot de passe" type="password" required>
+                <span id="info">Info</span>
                 <button>Se connecter</button>
                 <a href="signup.html" id="signup">S'inscrire</a>
             </form>
-    
         </main>
         <footer class="footer">
         </footer>

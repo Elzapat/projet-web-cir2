@@ -1,7 +1,7 @@
 <?php
 
-include_once "../database/db_connector.php";
-include_once "../api/v1/utils.php";
+include_once $_SERVER["DOCUMENT_ROOT"] . "/utils.php";
+include_once $_SERVER["DOCUMENT_ROOT"] . "/database/db_connector.php";
 
 $request = substr($_SERVER["PATH_INFO"], 1);
 $request = explode('/', $request);
@@ -17,9 +17,6 @@ try {
 switch ($request_ressource) {
     case "authenticate":
         authenticate($db);
-    case "login":
-        $login = verify_token($db);
-        send_reponse($login, 200, "plain/text");
     default:
         send_response(null, 400);
 }
@@ -34,21 +31,7 @@ function authenticate($db) {
     $token = base64_encode(openssl_random_pseudo_bytes(12));
     $db->add_user_token($username, $token);
 
-    send_reponse($token, 200, "plain/text");
-}
-
-function verify_token($db) {
-    $headers = getallheaders();
-    $token = $headers["Authorization"];
-
-    if (preg_match("/Bearer (.*)/", $token, $tab))
-        $token = $tab[1]
-
-    $login = $db->verify_user_token($token);
-    if (!$login)
-        send_response(null, 401);
-
-    return $login;
+    send_response($token, 200, "plain/text");
 }
 
 ?>

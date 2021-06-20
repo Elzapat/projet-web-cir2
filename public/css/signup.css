@@ -28,10 +28,11 @@ main {
     width: 25vw;
 }
 
-#error {
+#info {
     font-size: 1.5rem;
     color: red;
     opacity: 0;
     transition: 400ms ease;
     overflow: hidden;
+    white-space: nowrap;
 }

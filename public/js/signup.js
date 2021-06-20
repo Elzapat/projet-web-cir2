@@ -6,15 +6,14 @@ document.getElementsByClassName("sign-up")[0].onsubmit = () => {
     let password_confirm = document.getElementById("password-confirm").value;
     let phone = document.getElementById("phone").value;
 
-    let error_container = document.getElementById("error");
+    let info = document.getElementById("info");
 
     if (password != password_confirm) {
-        error_container.innerHTML = "Les deux mots de passe rentrés sont différents";
-        error_container.style.opacity = 1;
+        info.innerHTML = "Les deux mots de passe rentrés sont différents";
+        info.style.opacity = 1;
         return false;
     }
 
-    console.log(document.location);
     fetch(`../api/v1/request.php/utilisateurs/pseudo/${username}`, { method: "GET"})
         .then(response => {
             if (!response.ok)
@@ -34,13 +33,13 @@ document.getElementsByClassName("sign-up")[0].onsubmit = () => {
             .then(creation_success => {
                 if (!creation_success)
                     throw new Error("Errur à la création du compte");
-                error_container.innerHTML = "Compte créé avec succès";
-                error_container.style.opacity = 1;
+                info.innerHTML = "Compte créé avec succès";
+                info.style.opacity = 1;
             });
         })
         .catch(error => {
-            error_container.innerHTML = error.message;
-            error_container.style.opacity = 1;
+            info.innerHTML = error.message;
+            info.style.opacity = 1;
         });
 
     return false;

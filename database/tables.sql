@@ -31,7 +31,8 @@ CREATE TABLE ville(
 
 CREATE TABLE site_isen(
         code_insee Varchar (20) NOT NULL ,
-        adresse    Varchar (255) NOT NULL
+        adresse    Varchar (255) NOT NULL ,
+        nom        Varchar (50) NOT NULL
 	,CONSTRAINT site_isen_PK PRIMARY KEY (code_insee)
 	,CONSTRAINT site_isen_ville_FK FOREIGN KEY (code_insee) REFERENCES ville(code_insee)
 )ENGINE=InnoDB;

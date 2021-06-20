@@ -17,7 +17,24 @@ class dbConnector {
     }
 
     public function get_trips($start_date, $limit) {
+        try {
+            $request = "SELECT t.id_trajet, t.depart_sein, v.nom, i.nom,
+                            t.duree_trajet, t.date_depart, t.date_arrivee
+                            t.prix, t.places_restantes, t.pseudo
+                        FROM trajet t
+                        JOIN ville v ON t.code_insee = v.code_insee
+                        JOIN site_isen i ON t.code_insee_site_isen = i.code_insee
+                        LIMIT :limit";
+            $stmt = $this->db->prepare($request);
+            $stmt->bindParam(":limit", $limit, PDO::PARAM_INT);
+            $stmt->execute();
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            error_log("Request error: " . $e->getMessage());
+            return false;
+        }
 
+        return $result;
     }
 
     public function get_isen_locations() {
@@ -67,24 +84,24 @@ class dbConnector {
 
     public function check_user_credentials($username, $password) {
         try {
-            $request = "SELECT * FROM utilisateur WHERE pseudo=:username AND
-                    password=sha1(:password)";
+            $request = "SELECT pseudo FROM utilisateur WHERE pseudo=:username AND
+                    mot_de_passe=sha1(:password)";
             $stmt = $this->db->prepare($request);
-            $stmt->bindParam(":pseudo", $username, PDO::PARAM_STR, 20);
+            $stmt->bindParam(":username", $username, PDO::PARAM_STR, 20);
             $stmt->bindParam(":password", $password, PDO::PARAM_STR, 40);
             $stmt->execute();
-            $result = $statement->fetch();
+            $result = $stmt->fetch();
         } catch (PDOException $e) {
             error_log("Request error: " . $e->getMessage());
             return false;
         }
 
-        return isset($result);
+        return $result;
     }
 
     public function add_user_token($username, $token) {
         try {
-            $request = "UPDATE utilsateur SET jeton_auth=:token WHERE pseudo=:username";
+            $request = "UPDATE utilisateur SET jeton_auth=:token WHERE pseudo=:username";
             $stmt = $this->db->prepare($request);
             $stmt->bindParam(":token", $token, PDO::PARAM_STR, 20);
             $stmt->bindParam(":username", $username, PDO::PARAM_STR, 20);
