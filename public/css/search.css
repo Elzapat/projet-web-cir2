@@ -26,6 +26,7 @@ main {
     display: flex;
     justify-content: space-evenly;
     flex-direction: row;
+    transition: all 500ms ease;
 }
 
 .search-row:last-child {
@@ -57,7 +58,7 @@ main {
     font-size: 2.2rem;
 }
 
-#error {
+#info {
     opacity: 0;
     transition: 400ms ease;
     font-size: 1.5rem;
@@ -74,4 +75,10 @@ main {
 .location {
     width: 100%;
     font-size: 2rem;
+}
+
+.loading-icon {
+    margin: auto;
+    width: 3%;
+    fill: yellow;
 }

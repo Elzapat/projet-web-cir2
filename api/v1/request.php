@@ -20,7 +20,7 @@ switch ($request_ressource) {
         users($request_method, $request);
     case "trajets":
         trips($request_method);
-    case "locations_isen":
+    case "sites_isen":
         isen_locations($request_method);
     default:
         send_response(null, 400);

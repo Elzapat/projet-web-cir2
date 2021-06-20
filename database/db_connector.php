@@ -39,11 +39,10 @@ class dbConnector {
 
     public function get_isen_locations() {
         try {
-            $request = "SELECT v.nom FROM ville v
-                        JOIN site_isen s ON v.code_insee = s.code_insee";
+            $request = "SELECT nom FROM site_isen";
             $stmt = $this->db->prepare($request);
             $stmt->execute();
-            $result = $stmt->fetch();
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
             error_log("Request error" . $e->getMessage());
             return false;

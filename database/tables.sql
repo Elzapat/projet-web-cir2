@@ -19,8 +19,7 @@ CREATE TABLE utilisateur(
 
 CREATE TABLE ville(
         code_insee  Varchar (20) NOT NULL ,
-        nom         Varchar (100) NOT NULL ,
-        code_postal Int NOT NULL
+        nom         Varchar (100) NOT NULL
 	,CONSTRAINT ville_PK PRIMARY KEY (code_insee)
 )ENGINE=InnoDB;
 
