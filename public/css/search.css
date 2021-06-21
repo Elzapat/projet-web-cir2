@@ -49,7 +49,7 @@ main {
 
 .date {
     font-size: 2rem;
-    width: 100%;
+    width: 25%;
 }
 
 #search {
@@ -67,13 +67,12 @@ main {
 
 #start-loc, #end-loc {
     margin: 0;
-    padding: 0;
     width: 25%;
     height: 100%;
 }
 
-#datetest {
-    width: 25%;
+.input-text[type="text"] {
+    height: 100%;
 }
 
 .location {

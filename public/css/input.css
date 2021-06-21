@@ -3,6 +3,7 @@ input, select {
     border-bottom: solid 1px #00781A;
     color: #00781A;
     font-size: 2rem;
+    padding-top: 2vh;
     width: 25vw;
 }
 
