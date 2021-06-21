@@ -1,0 +1,92 @@
+body {
+    margin: 0;
+}
+
+main {
+    flex: 1;
+    background-image: url("../images/fond.png");
+    background-size: cover;
+    display: flex;
+}
+
+#search-trip {
+    background-color: var(--background-color);
+    width: 60%;
+    height: 60vh;
+    margin: auto;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    transition: all 500ms ease;
+    color: var(--text-color);
+}
+
+.search-row {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    transition: all 500ms ease;
+}
+
+.search-row:last-child {
+    flex-direction: column;
+    align-items: center;
+}
+
+.dest-choice {
+    height: 4rem;
+    width: 33%;
+    border: 2px solid var(--accent-color);
+    font-size: 2rem;
+    transition: all 200ms ease;
+}
+
+.selected {
+    color: var(--accent-color);
+    background-color: var(--background-color);
+}
+
+.date {
+    font-size: 2rem;
+    width: 25%;
+}
+
+#search {
+    width: 25%;
+    height: 4rem;
+    font-size: 2.2rem;
+}
+
+#info {
+    opacity: 0;
+    transition: 400ms ease;
+    font-size: 1.5rem;
+    color: red;
+}
+
+#start-loc, #end-loc, #datetest {
+    margin: 0;
+    width: 25%;
+    height: 100%;
+}
+
+.input-text[type="text"] {
+    height: 100%;
+}
+
+.location {
+    width: 100%;
+    font-size: 2rem;
+}
+
+.loading-icon {
+    margin: auto;
+    width: 3%;
+    animation: fade-in 500ms ease;
+}
+
+@keyframes fade-in {
+    from { opacity: 0 }
+    to { opacity: 1 }
+}
