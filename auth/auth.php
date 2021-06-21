@@ -1,7 +1,7 @@
 <?php
 
-include_once $_SERVER["DOCUMENT_ROOT"] . "/utils.php";
-include_once $_SERVER["DOCUMENT_ROOT"] . "/database/db_connector.php";
+include_once "../utils.php";
+include_once "../database/db_connector.php";
 
 $request = substr($_SERVER["PATH_INFO"], 1);
 $request = explode('/', $request);

@@ -1,6 +1,6 @@
 <?php
 
-include_once $_SERVER["DOCUMENT_ROOT"] . "/constants.php";
+include_once "../../constants.php";
 
 class dbConnector {
     private $db;

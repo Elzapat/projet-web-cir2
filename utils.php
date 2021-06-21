@@ -20,7 +20,7 @@ function send_response($data, $code, $type = "application/json") {
         exit;
 
     // If the data type is JSON, send the data as JSON
-    if (str_contains($type, "json"))
+    if (strpos($type, "json") != false)
         echo json_encode($data);
     else
         echo $data;
