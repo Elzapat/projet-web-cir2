@@ -6,7 +6,6 @@ input, select {
     width: 25vw;
 }
 
-
 .input-text::-webkit-input-placeholder {
     -webkit-transition: all 0.3s ease-in-out;
             transition: all 0.3s ease-in-out;

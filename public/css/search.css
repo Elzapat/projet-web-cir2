@@ -65,15 +65,15 @@ main {
     color: red;
 }
 
-#start-loc, #end-loc {
+#start-loc, #end-loc, #datetest {
     margin: 0;
     padding: 0;
     width: 25%;
     height: 100%;
 }
 
-#datetest {
-    width: 25%;
+.input-text {
+    padding-top: 2vh;
 }
 
 .location {

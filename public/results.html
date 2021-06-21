@@ -1,0 +1,65 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- CSS Stylesheets -->
+        <link rel="stylesheet" href="css/constants.css">
+        <link rel="stylesheet" href="css/navbar.css">
+        <link rel="stylesheet" href="css/footer.css">
+        <link rel="stylesheet" href="css/results.css">
+        <link rel="stylesheet" href="css/button.css">
+        <link rel="stylesheet" href="css/input.css">
+        <!-- Page icon -->
+        <link rel="icon" href="images/icon.svg">
+        <!-- Page font -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap" rel="stylesheet"/>
+
+        <!-- Script to manage cookies -->
+        <script src="js/cookies.js" defer></script>
+        <!-- Script to authenticate -->
+        <script src="js/authentification.js" defer></script>
+        <!-- Script to load the navbar and footer -->
+        <script src="js/load_navbar_and_footer.js" defer></script>
+        <!-- Script to manage the search form -->
+        <script src="js/search_trips.js" defer></script>
+
+    </head>
+    <body>
+        <nav class="navbar">
+        </nav>
+        <main>
+            <div class="result-row" id="recap">
+                <a id="start-loc" class="brut-input">Brest</a>
+                <img id="arrow" src="images/fleches.png">
+                <a id="end-loc" class="brut-input">Lorient</a>
+                <a id="date-search" class="brut-input">18 Juin 2021</a>
+                <a id="nb-results" class="brut-input">40 résultats</a>
+            </div>
+
+            <div class="result-row date">
+               <a class="brut-input">Aujourd'hui</a>
+            </div>
+
+            <div class="result-row result">
+                <span class="city">Brest</span>
+                <span class="hour">18h</span>
+                <span class="arrow">></span>
+                <span class="ville">Lorient</span>
+                <span class="hour">19h10</span>
+                <span class="time">Durée : 1h10</span>
+                <span class="price">5,00€</span>
+                <span class="seats">1 place</span>
+                <span class="driver">par antoine18</span>
+                <button class="choise">Choisir</button>
+            </div>
+           
+            <div class="result-row date">
+                <a class="brut-input">23 Juin</a>
+             </div>
+
+        </main>
+        <footer class="footer">
+        </footer>
+    </body>
+</html>
