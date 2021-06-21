@@ -4,5 +4,43 @@ body {
 
 main {
     flex: 1;
-    padding: -3vw;
+    background-image: url("../images/fond.png");
+    background-size: cover;
+    display: flex;
+}
+
+#publish-trip {
+    background-color: var(--background-color);
+    width: 60%;
+    height: 60vh;
+    margin: auto;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    transition: all 500ms ease;
+    color: var(--text-color);
+}
+
+.publish-row {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    transition: all 500ms ease;
+}
+
+.publish-row:last-child {
+    flex-direction: column;
+    align-items: center;
+}
+
+.input-text[type="text"] {
+    height: 100%;
+}
+
+#info {
+    opacity: 0;
+    transition: 400ms ease;
+    font-size: 1.5rem;
+    color: red;
 }

@@ -8,10 +8,12 @@
         <link rel="stylesheet" href="css/navbar.css">
         <link rel="stylesheet" href="css/footer.css">
         <link rel="stylesheet" href="css/publish_trip.css">
-        <!-- Page font -->
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap" rel="stylesheet"/>
+        <link rel="stylesheet" href="css/button.css">
+        <link rel="stylesheet" href="css/input.css">
         <!-- Page icon -->
         <link rel="icon" href="images/icon.svg">
+        <!-- Page font -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap" rel="stylesheet"/>
 
         <!-- Script to manage cookies -->
         <script src="js/cookies.js" defer></script>
@@ -19,14 +21,32 @@
         <script src="js/authentification.js" defer></script>
         <!-- Script to load the navbar and footer -->
         <script src="js/load_navbar_and_footer.js" defer></script>
+        <!-- Script to manage the search form -->
+        <script src="js/search_trips.js" defer></script>
+
     </head>
     <body>
         <nav class="navbar">
         </nav>
         <main>
-            <div id="infos">
-                <span class=""
-            </div>
+            <form id="publish-trip">
+                <div class="publish-row">
+                    <input class="input-text" placeholder="Date de départ" type="date">
+                    <input class="input-text" placeholder="Heure de départ" type="datetime">
+                </div>
+                <div class="publish-row">
+                    <input class="input-text" placeholder="Lieu de départ" type="text">
+                    <input class="input-text" placeholder="Lieu d'arrivée" type="text">
+                </div>
+                <div class="publish-row">
+                    <input class="input-text" placeholder="Nombre de places" type="number" min="1" max="10">
+                    <input class="input-text" placeholder="Prix" type="number" min="0" max="100">
+                </div>
+                <div class="publish-row">
+                    <span id="info">Info</span>
+                    <button type="submit" id="publish">Rechercher</button>
+                </div>
+            </form>
         </main>
         <footer class="footer">
         </footer>
