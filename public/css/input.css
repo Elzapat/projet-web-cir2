@@ -3,7 +3,6 @@ input {
     border-bottom: solid 1px #00781A;
     color: #00781A;
     font-size: 2rem;
-    padding-top: 10%;
     width: 25vw;
 }
 
@@ -18,7 +17,7 @@ input {
     background-position: 0 0;
 }
 
-.input-text:focus::-webkit-input-placeholder, .input-text:valid::-webkit-input-placeholder {
+.input-text:focus::-webkit-input-placeholder {
     color: #00781A;
     font-size: 45%;
     -webkit-transform: translateY(-2rem);

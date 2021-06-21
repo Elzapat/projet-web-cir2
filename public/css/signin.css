@@ -20,9 +20,15 @@ input[type="password"] {
     margin-bottom: 10%;
 }
 
+.input-text{
+    padding-top: 2vh;
+    margin-top: 3vh;
+}
+
 #signup {
     margin-top: 1rem;
     text-decoration: none;
+    color: black;
 }
 
 #info {

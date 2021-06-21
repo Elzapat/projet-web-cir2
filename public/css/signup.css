@@ -20,6 +20,11 @@ input[type="tel"] {
     margin-bottom: 10%;
 }
 
+.input-text{
+    padding-top: 2vh;
+    margin-top: 3vh;
+}
+
 #info {
     font-size: 1.5rem;
     color: red;

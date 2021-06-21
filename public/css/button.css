@@ -14,8 +14,7 @@ button:hover {
     box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 0.2);
 }
 
-
-button:active { /* Lorsque qu'on clic sur le bouton submit */
+button:active {
     font-size: 1.9rem;
     transition: 0.05s ease;
 }
