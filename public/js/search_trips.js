@@ -31,7 +31,7 @@ for (let button of choice_buttons) {
             isen_select += `<option value="${isen_loc}">${isen_loc}</option>`;
         isen_select += "</select>"
 
-        let loc_input = "<input class='location input-text' placeholder=\"Adresse :dest\" type='text'>";
+        let loc_input = "<input class='location input-text' placeholder=\"Adresse :dest\" type='text' oninput='autocomplete_addresses(event)'>";
 
         let start_loc_container = document.getElementById("start-loc");
         let end_loc_container = document.getElementById("end-loc");
@@ -44,6 +44,38 @@ for (let button of choice_buttons) {
             start_loc_container.innerHTML = loc_input.replace(":dest", "de départ:");
         }
     });
+}
+
+// Controller to abort addresses fetch request so as not to
+// do a lot of requests at once
+let controller = new AbortController();
+let signal = controller.signal;
+
+// Autocomplete addresses when the user starts typing an adress
+function autocomplete_addresses(event) {
+    // Abort all current address fetch requests;
+    // controller.abort();
+
+    let input = event.target.value;
+    // Base OpenStreetMap API request
+    let request = "https://nominatim.openstreetmap.org/search.php?";
+    // Add the address the user is typing 
+    request += "street=" + input;
+    // Format the response to JSON
+    request += "&format=jsonv2";
+    // Limit the number of results to 5
+    request += "&limit=5";
+    // Limit the search to only France
+    request += "&countrycodes=FR";
+    // Break the address into componants
+    request += "&addressdetails=1";
+    // Insert my email address so they can track who makes requests
+    request += "&email=vanamerongen.morgan@gmail.com"
+
+    fetch(request, { method: "GET", signal: signal })
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(err => console.log(err.message));
 }
 
 document.getElementById("search-trip").onsubmit = event => {
