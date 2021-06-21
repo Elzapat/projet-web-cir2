@@ -47,14 +47,9 @@ main {
     background-color: var(--background-color);
 }
 
-.input-text{
-    padding-top: 2vh;
-}
-
 .date {
     font-size: 2rem;
-    width: 25%;
-    height: 92%;
+    width: 100%;
 }
 
 #search {
@@ -75,6 +70,10 @@ main {
     padding: 0;
     width: 25%;
     height: 100%;
+}
+
+#datetest {
+    width: 25%;
 }
 
 .location {
