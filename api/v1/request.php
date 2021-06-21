@@ -1,9 +1,9 @@
 <?php
 
-include_once $_SERVER["DOCUMENT_ROOT"] . "/api/v1/ressources/users.php";
-include_once $_SERVER["DOCUMENT_ROOT"] . "/api/v1/ressources/trips.php";
-include_once $_SERVER["DOCUMENT_ROOT"] . "/api/v1/ressources/isen_locations.php";
-include_once $_SERVER["DOCUMENT_ROOT"] . "/utils.php";
+include_once "../../utils.php";
+include_once "ressources/users.php";
+include_once "ressources/isen_locations.php";
+include_once "ressources/trips.php";
 
 // On récupère le lien après le fichier PHP et on retire le premier slash
 $request = substr($_SERVER["PATH_INFO"], 1);

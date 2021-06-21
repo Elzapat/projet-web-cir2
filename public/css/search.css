@@ -80,5 +80,10 @@ main {
 .loading-icon {
     margin: auto;
     width: 3%;
-    fill: yellow;
+    animation: fade-in 500ms ease;
+}
+
+@keyframes fade-in {
+    from { opacity: 0 }
+    to { opacity: 1 }
 }
