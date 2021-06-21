@@ -1,0 +1,45 @@
+body {
+    margin: 0;
+}
+
+main {
+    flex: 1;
+    background-color: white;
+    display: flex;
+}
+  
+.sign-in {
+    width: 20vw;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sign-in > button {
+    font-size: 2rem;
+    height: 4rem;
+    width: 25vw;
+}
+
+.sign-in > input {
+    padding-top: 15%;
+    font-size: 2rem;
+    width: 25vw;
+}
+
+input[type="password"] {
+    margin-bottom: 15%;
+}
+
+#signup {
+    margin-top: 0.5rem;
+}
+
+#info {
+    font-size: 1.5rem;
+    color: red;
+    opacity: 0;
+    transition: 400ms ease;
+    white-space: nowrap;
+}

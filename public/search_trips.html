@@ -1,0 +1,54 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- CSS Stylesheets -->
+        <link rel="stylesheet" href="css/constants.css">
+        <link rel="stylesheet" href="css/navbar.css">
+        <link rel="stylesheet" href="css/footer.css">
+        <link rel="stylesheet" href="css/search.css">
+        <link rel="stylesheet" href="css/button.css">
+        <link rel="stylesheet" href="css/input.css">
+        <!-- Page icon -->
+        <link rel="icon" href="images/icon.svg">
+        <!-- Page font -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap" rel="stylesheet"/>
+
+        <!-- Script to manage cookies -->
+        <script src="js/cookies.js" defer></script>
+        <!-- Script to authenticate -->
+        <script src="js/authentification.js" defer></script>
+        <!-- Script to load the navbar and footer -->
+        <script src="js/load_navbar_and_footer.js" defer></script>
+        <!-- Script to manage the search form -->
+        <script src="js/search_trips.js" defer></script>
+    </head>
+    <body>
+        <nav class="navbar">
+        </nav>
+        <main>
+            <form id="search-trip">
+                <div class="search-row">
+                    <button value="from_ISEN" class="dest-choice" type="button">Partir à l'ISEN</button>
+                    <button value="to_ISEN" class="dest-choice" type="button">Allez à l'ISEN</button>
+                </div>
+                <div class="search-row">
+                    <div id="start-loc">
+                        <input class="location input-text" placeholder="Adresse de départ" type="text">
+                    </div>
+                    <div id="end-loc">
+                        <input class="location input-text" placeholder="Adresse d'arrivée"type="text">
+                    </div>
+                    <input class="date input-text" placeholder="Date du départ" type="date">
+                </div>
+                <div class="search-row">
+                    <span id="info">Info</span>
+                    <button type="submit" id="search">Rechercher</button>
+                </div>
+            </form>
+        </main>
+        <footer class="footer">
+        </footer>
+    </body>
+</html>
