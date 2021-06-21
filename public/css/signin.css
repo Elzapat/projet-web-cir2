@@ -4,7 +4,7 @@ body {
 
 main {
     flex: 1;
-    background-color: white;
+    background-color: var(--background-color);
     display: flex;
 }
   
@@ -16,24 +16,13 @@ main {
     align-items: center;
 }
 
-.sign-in > button {
-    font-size: 2rem;
-    height: 4rem;
-    width: 25vw;
-}
-
-.sign-in > input {
-    padding-top: 15%;
-    font-size: 2rem;
-    width: 25vw;
-}
-
 input[type="password"] {
-    margin-bottom: 15%;
+    margin-bottom: 10%;
 }
 
 #signup {
-    margin-top: 0.5rem;
+    margin-top: 1rem;
+    text-decoration: none;
 }
 
 #info {

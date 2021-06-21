@@ -16,16 +16,8 @@ main {
     align-items: center;
 }
 
-.input-text {
-    font-size: 2rem;
-    margin-bottom: 3rem;
-    width: 25vw;
-}
-
-.sign-up > button {
-    font-size: 2rem;
-    height: 4rem;
-    width: 25vw;
+input[type="tel"] {
+    margin-bottom: 10%;
 }
 
 #info {

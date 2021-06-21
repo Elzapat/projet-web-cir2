@@ -5,8 +5,17 @@ button {
     border-radius: 4px;
     color: white;
     box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.2);
+    font-size: 2rem;
+    height: 4rem;
+    width: 20vw;
 }
 
 button:hover {
     box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 0.2);
+}
+
+
+button:active { /* Lorsque qu'on clic sur le bouton submit */
+    font-size: 1.9rem;
+    transition: 0.05s ease;
 }

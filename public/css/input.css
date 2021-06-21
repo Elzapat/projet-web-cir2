@@ -1,7 +1,10 @@
-.input-text {
+input {
     border: none;
     border-bottom: solid 1px #00781A;
     color: #00781A;
+    font-size: 2rem;
+    padding-top: 10%;
+    width: 25vw;
 }
 
 .input-text::-webkit-input-placeholder {
