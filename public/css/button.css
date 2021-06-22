@@ -1,4 +1,4 @@
-button {
+button, .a-button {
     border: none;
     background: var(--accent-color);
     cursor: pointer;
@@ -10,7 +10,7 @@ button {
     width: 20vw;
 }
 
-button:active {
+button:active, .a-button:hover {
     font-size: 1.9rem;
-    transition: 0.05s ease;
+    transition: 0.4s ease;
 }

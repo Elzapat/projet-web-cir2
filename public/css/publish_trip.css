@@ -7,6 +7,7 @@ main {
     background-image: url("../images/fond.png");
     background-size: cover;
     display: flex;
+    position: relative;
 }
 
 #publish-trip {
@@ -43,4 +44,28 @@ main {
     transition: 400ms ease;
     font-size: 1.5rem;
     color: red;
+}
+
+#no-connect {
+    color: var(--text-color);
+    text-decoration: none;
+    position: absolute;
+    align-self: center;
+    margin: 0;
+    padding: 0;
+    font-size: 4rem;
+    transform: translate(0,-70%);
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 5px;
+    padding: 1%;
+    padding-left: 5%;
+    padding-right: 5%;
+    border: solid 2px var(--accent-color);
+}
+
+#no-connect:hover {
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    background-color: var(--accent-color);
+    transition: 0.3s ease;
 }

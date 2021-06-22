@@ -23,6 +23,8 @@
         <script src="js/load_navbar_and_footer.js" defer></script>
         <!-- Script to manage the search form -->
         <script src="js/search_trips.js" defer></script>
+        <!-- Script to manage the connection -->
+        <script src="js/publish.js" defer></script>
 
     </head>
     <body>
@@ -42,9 +44,14 @@
                     <input class="input-text" placeholder="Nombre de places" type="number" min="1" max="10">
                     <input class="input-text" placeholder="Prix" type="number" min="0" max="100">
                 </div>
-                <div class="publish-row">
+
+                <a id="no-connect" style="display:none" href="signin.html">Vous n'êtes pas connecté</a>
+
+                <div class="publish-row" id="publish-div">
                     <span id="info">Info</span>
-                    <button type="submit" id="publish">Rechercher</button>
+
+                    <button type="submit" id="publish">Publier</button>
+                    
                 </div>
             </form>
         </main>
