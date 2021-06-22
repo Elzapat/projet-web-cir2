@@ -14,13 +14,15 @@ function trips($request_method) {
 
     switch ($request_method) {
         case "GET":
-            if (!isset($_GET["start_date"]))
+            if (!isset($_GET["date"]) || !isset($_GET["depart"]) ||
+                    !isset($_GET["arrivee"]) || !isset($_GET["depart_isen"]))
                 send_response(null, 400);
             $limit = isset($_GET["limit"]) ? $_GET["limit"] : MAX_TRIPS_RETRIEVE;
             if ($limit > MAX_TRIPS_RETRIEVE)
                 $limit = MAX_TRIPS_RETRIEVE;
 
-            $data = $db->get_trips($_GET["start_date"], $limit);
+            $data = $db->get_trips($_GET["date"], $_GET["depart"],
+                $_GET["arrivee"], $_GET["depart_isen"], $limit);
             send_response($data, 200);
         default:
             send_response(null, 400);

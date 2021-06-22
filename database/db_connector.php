@@ -16,16 +16,25 @@ class dbConnector {
         unset($db);
     }
 
-    public function get_trips($start_date, $limit) {
+    public function get_trips($date, $start, $end, $isen_start, $limit) {
         try {
-            $request = "SELECT t.id_trajet, t.depart_sein, v.nom, i.nom,
-                            t.duree_trajet, t.date_depart, t.date_arrivee
-                            t.prix, t.places_restantes, t.pseudo
+            $request = "SELECT t.id_trajet, t.depart_isen, v.nom, i.nom,
+                            t.duree_trajet, t.date_depart, t.date_arrivee,
+                            t.prix, t.nb_places_restantes, t.pseudo
                         FROM trajet t
                         JOIN ville v ON t.code_insee = v.code_insee
                         JOIN site_isen i ON t.code_insee_site_isen = i.code_insee
+                        WHERE v.nom = :city AND i.nom = :isen_loc
+                            AND DATE(t.date_depart) <= :date
+                            AND DATE_ADD(DATE(t.date_depart), INTERVAL 7 DAY) >= :date
                         LIMIT :limit";
+            $city = $isen_start ? $end : $start;
+            $isen = $isen_start ? $start : $end;
+
             $stmt = $this->db->prepare($request);
+            $stmt->bindParam(":city", $city, PDO::PARAM_STR, 100);
+            $stmt->bindParam(":isen_loc", $isen, PDO::PARAM_STR, 100);
+            $stmt->bindParam(":date", $date, PDO::PARAM_STR, 20);
             $stmt->bindParam(":limit", $limit, PDO::PARAM_INT);
             $stmt->execute();
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
