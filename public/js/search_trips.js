@@ -14,6 +14,8 @@ fetch("../api/v1/request.php/sites_isen", { method: "GET" })
         info.style.opacity = 1;
     });
     
+// Variable to keep track whether we go to ISEN or start from ISEN
+let start_ISEN = false;
 
 // Get all the elements with the dest-choice class
 let choice_buttons = document.getElementsByClassName("dest-choice");
@@ -26,56 +28,30 @@ for (let button of choice_buttons) {
         // Add the "selected" class to the clicked button
         event.target.classList.add("selected");
 
-        let isen_select = "<select class='location input-text'>"
+        let isen_select = "<select id=':id' class='location input-text'>"
         for (let isen_loc of isen_locations)
             isen_select += `<option value="${isen_loc}">${isen_loc}</option>`;
         isen_select += "</select>"
 
-        let loc_input = "<input class='location input-text' placeholder=\"Adresse :dest\" type='text' oninput='autocomplete_addresses(event)'>";
+        let loc_input = "<input id=':id' class='location input-text' placeholder=\"Adresse :dest\" type='text' oninput='autocomplete_addresses(event)'>";
 
         let start_loc_container = document.getElementById("start-loc");
         let end_loc_container = document.getElementById("end-loc");
 
         if (event.target.value == "from_ISEN") {
-            start_loc_container.innerHTML = isen_select;
-            end_loc_container.innerHTML = loc_input.replace(":dest", "d'arrivée");
+            start_isen = true;
+            start_loc_container.innerHTML = isen_select.replace(":id", "start-input");
+            end_loc_container.innerHTML = loc_input
+                .replace(":dest", "d'arrivée")
+                .replace(":id", "end-input");
         } else if (event.target.value == "to_ISEN") {
-            end_loc_container.innerHTML = isen_select;
-            start_loc_container.innerHTML = loc_input.replace(":dest", "de départ:");
+            start_isen = false;
+            end_loc_container.innerHTML = isen_select.replace(":id", "end-input");
+            start_loc_container.innerHTML = loc_input
+                .replace(":dest", "de départ:")
+                .replace(":id", "start-input");
         }
     });
-}
-
-// Controller to abort addresses fetch request so as not to
-// do a lot of requests at once
-let controller = new AbortController();
-let signal = controller.signal;
-
-// Autocomplete addresses when the user starts typing an adress
-function autocomplete_addresses(event) {
-    // Abort all current address fetch requests;
-    // controller.abort();
-
-    let input = event.target.value;
-    // Base OpenStreetMap API request
-    let request = "https://nominatim.openstreetmap.org/search.php?";
-    // Add the address the user is typing 
-    request += "street=" + input;
-    // Format the response to JSON
-    request += "&format=jsonv2";
-    // Limit the number of results to 5
-    request += "&limit=5";
-    // Limit the search to only France
-    request += "&countrycodes=FR";
-    // Break the address into componants
-    request += "&addressdetails=1";
-    // Insert my email address so they can track who makes requests
-    request += "&email=vanamerongen.morgan@gmail.com"
-
-    fetch(request, { method: "GET", signal: signal })
-        .then(response => response.json())
-        .then(data => console.log(data))
-        .catch(err => console.log(err.message));
 }
 
 document.getElementById("search-trip").onsubmit = event => {
@@ -100,6 +76,13 @@ document.getElementById("search-trip").onsubmit = event => {
             child.style.opacity = 0;
     }
 
+    // Get the search parameters
+    let start_input = document.getElementById("start-input");
+    let end_input = document.getElementById("end-input");
+    let start_loc = start_input.dataset.pos ?? start_input.value;
+    let end_loc = end_input.dataset.pos ?? end_input.value;
+    let date = document.getElementById("date-input").value;
+
     // 500ms after, grow the form to the maximum
     setTimeout(() => {
         let footer_height = getComputedStyle(document.getElementsByClassName("footer")[0]).height;
@@ -115,11 +98,142 @@ document.getElementById("search-trip").onsubmit = event => {
         let main = document.getElementsByTagName("main")[0];
         main.style.background = "var(--background-color)";
         main.innerHTML = "<img class='loading-icon' src='images/loading.svg'>";
+
+        get_city(start_loc, end_loc, date);
     }, 1000);
 
     return false;
 }
 
-function get_trips() {
+function get_city(start_loc, end_loc, date) {
+    let isen = start_ISEN ? start_loc : end_loc;
+    // Get the city from the gps coordinates we got from the input
+    let request;
+    if (start_isen)
+        request = `https://photon.komoot.io/reverse?lat=${end_loc.split(';')[0]}&lon=${end_loc.split(';')[1]}`;
+    else 
+        request = `https://photon.komoot.io/reverse?lat=${start_loc.split(';')[0]}&lon=${start_loc.split(';')[1]}`;
 
+    fetch(request, { method: "GET" })
+        .then(response => {
+            if (response.status === 400)
+                throw new Error("wrong coords");
+            else if (response.ok)
+                return response.json();
+        })
+        .then(data => get_trips(extract_city_from_api_results(data), isen, date))
+        .catch(err => {
+            // If, for some reason, the coords passed are not valid,
+            // try to get the city name another way
+            request = `https://photon.komoot.io/api/?q=${start_isen ? end_loc : start_loc}&limit=5&lang=fr&lat=48.202047&lon=-2.932644`;
+            fetch(request, { method: "GET" })
+                .then(response => response.json())
+                .then(data => get_trips(extract_city_from_api_results(data), isen, date));
+        })
+        .catch(err => {
+            // get_trips(start_ISEN ? end_loc : start_loc, isen, date);
+            document.getElementsByTagName("main")[0].innerHTML = 
+                `<div id='error'>Location de départ / arrivée invalide (${err.message})</div>`;
+        });
+}
+
+function extract_city_from_api_results(data) {
+    if (data.features.length == 0)
+        throw new Error("empty data");
+    for (let result of data.features) {
+        if (result.properties.type == "city")
+            return result.properties.name;
+        else if (result.properties.city != undefined)
+            return result.properties.city;
+    }
+    throw new Error("no valid result");
+}
+
+function get_trips(city, isen, date) {
+    let request = `../api/v1/request.php/trajets?date=${date}
+&depart=${start_ISEN ? isen : city}&arrivee=${start_ISEN ? city : isen}
+&depart_isen=${start_ISEN ? 1 : 0}`;
+
+    fetch(request, { method: "GET" })
+        .then(response => response.json())
+        .then(data => display_trips_results(data))
+        .catch(err => {
+            document.getElementsByTagName("main")[0].innerHTML = 
+                `<div id='error'>Erreur à la rechercher de trajets (${err.message})</div>`;
+        });
+}
+
+function display_trips_results(trips) {
+
+}
+
+// Keep the ID of the timeout, to stop it if the user starts typing again
+let timeout = 0;
+// Autocomplete addresses when the user starts typing an adress
+function autocomplete_addresses(event) {
+    let input = event.target.value;
+    // Stop the queued timeout so as not to spam the API
+    clearTimeout(timeout);
+    timeout = setTimeout(() => fetch_matching_addresses(event.target, input), 1000);
+}
+
+function fetch_matching_addresses(input, query) {
+    // Using the photon API, which uses OpenStreetMap
+    // Limiting the number of results to 10 and putting priority to BRETAGNE
+    let request = `https://photon.komoot.io/api/?q=${query}&limit=10&lang=fr&lat=48.202047&lon=-2.932644`;
+
+    fetch(request, { method: "GET" })
+        .then(response => response.json())
+        .then(data => {
+            let results = new Array();
+            data.features.forEach(res => {
+                let street = res.properties.street ?? res.properties.name ?? "";
+                let city = res.properties.city ?? "";
+                results.push({
+                    name: `${street} <strong>${city}</strong>`,
+                    lon: res.geometry.coordinates[0] ?? 0.0,
+                    lat: res.geometry.coordinates[1] ?? 0.0
+                });
+            });
+            autocomplete(input, results);
+        });
+        // .catch(err => console.log(err));
+}
+
+// Functions to handle the autocomplete list
+// ---------------------------------------------
+
+// Remove all autocomplete items
+function close_all_lists() {
+    let items = document.getElementsByClassName("autocomplete-items");
+    for (let item of items)
+        item.parentNode.removeChild(item);
+}
+
+// Add autocomplete results under a desired input
+function autocomplete(input, results) {
+    close_all_lists();
+
+    let list = document.createElement("div");
+    list.setAttribute("id", "autocomplete-list");
+    list.setAttribute("class", "autocomplete-items");
+    input.parentNode.appendChild(list);
+
+    for (let res of results) {
+        let item = document.createElement("div");
+        item.innerHTML = res.name;
+        item.dataset.pos = res.lat + ';' + res.lon;
+        item.onclick = event => {
+            // Remove HTML tags
+            input.dataset.pos = item.dataset.pos;
+            input.value = event.target.innerHTML.replace(/(<([^>]+)>)/ig, '');
+            close_all_lists();
+        }
+        list.appendChild(item);
+    }
+}
+
+// Close the autocomplete when the page is clicked
+document.onclick = () => {
+    close_all_lists();
 }
