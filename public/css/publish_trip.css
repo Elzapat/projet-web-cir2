@@ -39,6 +39,11 @@ main {
     height: 100%;
 }
 
+.selected {
+    color: var(--accent-color);
+    background-color: var(--background-color);
+}
+
 #info {
     opacity: 0;
     transition: 400ms ease;
