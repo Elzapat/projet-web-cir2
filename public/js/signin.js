@@ -21,7 +21,11 @@ document.getElementsByClassName("sign-in")[0].onsubmit = () => {
     return false;
 }
 
-document.addEventListener('DOMContentLoaded', function change() {
+document.addEventListener('DOMContentLoaded', function() {
+    change();
+});
+
+function change() {
     if (Cookies.exists("login") && Cookies.exists("token")) {
         let main = document.getElementsByTagName("main")[0];
         
@@ -42,7 +46,4 @@ document.addEventListener('DOMContentLoaded', function change() {
             </form>
     `;
     }
-    
-   
-
-});
+}
