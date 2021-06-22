@@ -10,6 +10,7 @@ document.getElementsByClassName("sign-in")[0].onsubmit = () => {
             info.style.opacity = 1;
 
             log_in();
+            history.go(-1);
         })
         .catch(error => {
             info.innerHTML = error.message;

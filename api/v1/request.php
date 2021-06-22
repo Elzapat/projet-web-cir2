@@ -19,7 +19,7 @@ switch ($request_ressource) {
     case "utilisateurs":
         users($request_method, $request);
     case "trajets":
-        trips($request_method);
+        trips($request_method, $request);
     case "sites_isen":
         isen_locations($request_method);
     default:

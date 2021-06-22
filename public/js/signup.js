@@ -21,7 +21,6 @@ document.getElementsByClassName("sign-up")[0].onsubmit = () => {
             return response.json();
         })
         .then(async user_exists => {
-            console.log(user_exists);
             if (user_exists)
                 throw new Error("Ce pseudo est déjà pris");
             return fetch("../api/v1/request.php/utilisateurs", {
