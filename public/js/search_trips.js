@@ -36,6 +36,8 @@ for (let button of choice_buttons) {
         let loc_input = "<input id=':id' class='location input-text' placeholder=\"Adresse :dest\" type='text' oninput='autocomplete_addresses(event)'>";
 
         let start_loc_container = document.getElementById("start-loc");
+        let start_loc_container_p = document.getElementById("start-loc");
+
         let end_loc_container = document.getElementById("end-loc");
 
         if (event.target.value == "from_ISEN") {
