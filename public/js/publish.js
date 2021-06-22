@@ -1,12 +1,12 @@
-/*document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
     if (!Cookies.exists("login") && !Cookies.exists("token")) {
 
         var elems = document.getElementsByClassName('input-text');
-        for (var i=0 ; i<elems.length ; i+=1){
-            elems[i].style.opacity = "0.5";
-            elems[i].disabled = "true";
-        }
+        disable(elems);
 
+        elems = document.getElementsByClassName('dest-choice');
+        disable(elems);
+   
         document.getElementById("publish-trip").style.action = "signup.html";
 
         publish_button = document.getElementById("publish");
@@ -16,12 +16,15 @@
 
         info = document.getElementById("info");
         info.style.display = "none";
-       
+
         no_connect = document.getElementById("no-connect");
         no_connect.style.display = "flex";
-        
     }
-
 });
-*/
 
+function disable(elems) {
+    for (var i=0 ; i<elems.length ; i+=1){
+        elems[i].style.opacity = "0.5";
+        elems[i].disabled = "true";
+    }
+}

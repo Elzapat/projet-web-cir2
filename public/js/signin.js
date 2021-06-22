@@ -19,3 +19,27 @@ document.getElementsByClassName("sign-in")[0].onsubmit = () => {
 
     return false;
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    if (!Cookies.exists("login") && !Cookies.exists("token")) {
+        let main = document.getElementsByTagName("main")[0];
+
+        let username = "Pseudo";
+        let first_name = "Prénom";
+        let last_name = "Nom";
+        let phone = "Numéro de téléphone";
+    
+        main.innerHTML = `
+            <form class="sign-up">
+                <a id="username" class="input-text">${username}</a>
+                <a id="first-name" class="input-text">${first_name}</a>
+                <a id="last-name" class="input-text">${last_name}</a>
+                <a id="phone" class="input-text">${phone}</a>
+                <button id="disconnect" type="button">Se déconnecter</button>
+            </form>
+    `;
+    }
+    
+   
+
+});
