@@ -11,7 +11,7 @@ try {
     $db = new dbConnector();
 } catch (PDOException $e) {
     error_log("Database error: " . $e->getMessage());
-    send_reponse(null, 503);
+    send_response(null, 503);
 }
 
 switch ($request_ressource) {

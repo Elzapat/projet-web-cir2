@@ -1,6 +1,6 @@
 <?php
 
-include_once "../../constants.php";
+include_once "../constants.php";
 
 class dbConnector {
     private $db;
@@ -18,9 +18,9 @@ class dbConnector {
 
     public function get_trips($date, $start, $end, $isen_start, $limit) {
         try {
-            $request = "SELECT t.id_trajet, t.depart_isen, v.nom, i.nom,
-                            t.duree_trajet, t.date_depart, t.date_arrivee,
-                            t.prix, t.nb_places_restantes, t.pseudo
+            $request = "SELECT t.id_trajet, t.depart_isen, v.nom AS 'ville',
+                            i.nom AS 'isen', t.duree_trajet, t.date_depart,
+                            t.date_arrivee, t.prix, t.nb_places_restantes, t.pseudo
                         FROM trajet t
                         JOIN ville v ON t.code_insee = v.code_insee
                         JOIN site_isen i ON t.code_insee_site_isen = i.code_insee
