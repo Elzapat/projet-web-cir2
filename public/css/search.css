@@ -71,9 +71,9 @@ main {
     animation: fade-in 400ms ease;
 }
 
-.loc-s {
+.loc-s, #date-input {
     margin: 0;
-    width: 25%;;
+    width: 25%;
     height: 100%;
     position: relative;
 }

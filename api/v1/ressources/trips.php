@@ -3,7 +3,7 @@
 include_once "../../utils.php";
 include_once "../../constants.php";
 include_once "../../database/db_connector.php";
-include_once "../../auth/<F6>"
+include_once "../../auth/verify_token.php";
 
 function trips($request_method, $request) {
     try {
@@ -30,11 +30,11 @@ function trips($request_method, $request) {
             if (isset($req["login"])) {
                 $token_login = verify_token($db);
                 if ($token_login != $login)
-                    send_response(null, 401)
+                    send_response(null, 401);
             }
 
             if (isset($request[0]) && $request[0] == "passagers" &&
-                    && isset($req["id_trajet"])) {
+                    isset($req["id_trajet"])) {
                 $data = $db->add_passenger_to_trip($req["id_trajet"], $req["login"]);
                 send_response($data, $data ? 200 : 500);
             }
@@ -43,9 +43,9 @@ function trips($request_method, $request) {
                     !isset($req["nb_seats"]) || !isset($req["start_datetime"]) ||
                     !isset($req["end_datetime"]) || !isset($req["duration"]) ||
                     !isset($req["start_address"]) || !isset($req["end_address"]) ||
-                    !isset($req["city"] || !isset($req["isen"]) ||
+                    !isset($req["city"]) || !isset($req["isen"]) ||
                     !isset($req["isen_start"]))
-                send_reponse(null, 400);
+                send_response(null, 400);
 
                 // Check if the client has proper authorization
 
