@@ -7,7 +7,7 @@
 .navbar {
     top: 0;
     padding: 0;
-    height: 6rem;
+    height: 5rem;
     width: 100%;
     background-color: var(--navbar-primary);
     font-size: 1.6rem;
