@@ -1,3 +1,8 @@
+:root {
+    --results-animation-delay: 100ms;
+    --results-animation-time: 100ms;
+}
+
 body {
     margin: 0;
 }
@@ -66,7 +71,7 @@ main {
     animation: fade-in 400ms ease;
 }
 
-#start-loc, #end-loc, #datetest {
+#start-loc, #end-loc, #date-input {
     margin: 0;
     width: 25%;
     height: 100%;
@@ -92,6 +97,10 @@ select.input-text {
     margin: auto;
     width: 3%;
     animation: fade-in 500ms ease;
+}
+
+.autocomplete-list {
+    overflow: hidden;
 }
 
 .autocomplete-items {
@@ -120,6 +129,106 @@ select.input-text {
     margin: auto;
     color: red;
     font-size: 2rem;
+}
+
+#search-trips-results {
+    margin: 5vw;
+    display: flex;
+    flex: 1;
+    background-color: var(--background-color);
+    flex-direction: column;
+    color: var(--text-color);
+    font-size: 2.2rem;
+    background: var(--background-color)
+}
+
+#search-trips-result:nth-child(1) { animation: fade-in var(--results-animation-delay) ease calc(1 * var(--results-animation-delay)); }
+#search-trips-result:nth-child(2) { animation: fade-in var(--results-animation-delay) ease calc(2 * var(--results-animation-delay)); }
+#search-trips-result:nth-child(3) { animation: fade-in var(--results-animation-delay) ease calc(3 * var(--results-animation-delay)); }
+#search-trips-result:nth-child(4) { animation: fade-in var(--results-animation-delay) ease calc(4 * var(--results-animation-delay)); }
+#search-trips-result:nth-child(5) { animation: fade-in var(--results-animation-delay) ease calc(5 * var(--results-animation-delay)); }
+#search-trips-result:nth-child(6) { animation: fade-in var(--results-animation-delay) ease calc(6 * var(--results-animation-delay)); }
+#search-trips-result:nth-child(7) { animation: fade-in var(--results-animation-delay) ease calc(7 * var(--results-animation-delay)); }
+#search-trips-result:nth-child(8) { animation: fade-in var(--results-animation-delay) ease calc(8 * var(--results-animation-delay)); }
+#search-trips-result:nth-child(9) { animation: fade-in var(--results-animation-delay) ease calc(9 * var(--results-animation-delay)); }
+#search-trips-result:nth-child(10) { animation: fade-in var(--results-animation-delay) ease calc(10 * var(--results-animation-delay)); }
+
+.result-row {
+    margin-bottom: 3vh;
+    width: 100%;
+}
+
+.result {
+    border-radius: 5px;
+    border: solid 1px var(--text-color);
+    padding: 1.5rem;
+    padding-left: 4rem;
+    padding-right: 4rem;
+}
+
+.result:hover {
+    cursor: pointer;
+}
+
+#recap {
+    margin-bottom: 4vh;
+}
+
+#arrow {
+    width: 30px;
+    height: 35px;
+    vertical-align: middle;
+    margin-right: 2vw;
+}
+
+#start-loc-res {
+    margin-right: 1vw;
+}
+
+#end-loc-res, #date-search {
+    margin-right: 12vw;
+}
+
+#nb-results {
+    margin-left: auto;
+}
+
+.brut-input {
+    padding-right: 2vw;
+    border: none;
+    border-bottom: solid 1px var(--text-color);
+    color: var(--text-color);
+}
+
+.text-result {
+    padding-right: 0.5vw;
+}
+
+.date {
+    margin-top: 2vh;
+}
+
+.time {
+    font-size: 1.7rem;
+}
+
+.arrow {
+    margin-left: 2vw;
+    margin-right: 2vw;
+}
+
+.duration, .seats, .driver {
+    margin-left: 7%;
+    font-size: 1.8rem;
+}
+
+.price {
+    margin-left: 7%;
+}
+
+.choice {
+    width: 7vw;
+    margin-left: auto;
 }
 
 @keyframes fade-in {

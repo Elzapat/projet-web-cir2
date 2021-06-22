@@ -39,13 +39,13 @@ for (let button of choice_buttons) {
         let end_loc_container = document.getElementById("end-loc");
 
         if (event.target.value == "from_ISEN") {
-            start_isen = true;
+            start_ISEN = true;
             start_loc_container.innerHTML = isen_select.replace(":id", "start-input");
             end_loc_container.innerHTML = loc_input
                 .replace(":dest", "d'arrivée")
                 .replace(":id", "end-input");
         } else if (event.target.value == "to_ISEN") {
-            start_isen = false;
+            start_ISEN = false;
             end_loc_container.innerHTML = isen_select.replace(":id", "end-input");
             start_loc_container.innerHTML = loc_input
                 .replace(":dest", "de départ:")
@@ -109,7 +109,7 @@ function get_city(start_loc, end_loc, date) {
     let isen = start_ISEN ? start_loc : end_loc;
     // Get the city from the gps coordinates we got from the input
     let request;
-    if (start_isen)
+    if (start_ISEN)
         request = `https://photon.komoot.io/reverse?lat=${end_loc.split(';')[0]}&lon=${end_loc.split(';')[1]}`;
     else 
         request = `https://photon.komoot.io/reverse?lat=${start_loc.split(';')[0]}&lon=${start_loc.split(';')[1]}`;
@@ -125,7 +125,7 @@ function get_city(start_loc, end_loc, date) {
         .catch(err => {
             // If, for some reason, the coords passed are not valid,
             // try to get the city name another way
-            request = `https://photon.komoot.io/api/?q=${start_isen ? end_loc : start_loc}&limit=5&lang=fr&lat=48.202047&lon=-2.932644`;
+            request = `https://photon.komoot.io/api/?q=${start_ISEN ? end_loc : start_loc}&limit=5&lang=fr&lat=48.202047&lon=-2.932644`;
             fetch(request, { method: "GET" })
                 .then(response => response.json())
                 .then(data => get_trips(extract_city_from_api_results(data), isen, date));
@@ -156,15 +156,66 @@ function get_trips(city, isen, date) {
 
     fetch(request, { method: "GET" })
         .then(response => response.json())
-        .then(data => display_trips_results(data))
+        .then(data => display_trips_results(city, isen, date, data))
         .catch(err => {
+            console.log(err);
             document.getElementsByTagName("main")[0].innerHTML = 
-                `<div id='error'>Erreur à la rechercher de trajets (${err.message})</div>`;
+                `<div id='error'>Erreur à la recherche de trajets (${err.message})</div>`;
         });
 }
 
-function display_trips_results(trips) {
+function display_trips_results(search_city, search_isen, search_date, trips) {
+    let main = document.getElementsByTagName("main")[0];
 
+    let start = start_ISEN ? search_isen : search_city;
+    let end = start_ISEN ? search_city : search_isen;
+    let nb_results = trips.length.toString();
+    nb_results += " resultat" + nb_results > 1 ? 's' : '';
+    main.innerHTML = `
+        <section id="search-trips-results">
+            <div class="result-row" id="recap">
+                <a id="start-loc-res" class="brut-input">${start}</a>
+                <img id="arrow" src="images/fleches.png">
+                <a id="end-loc-res" class="brut-input">${end}</a>
+                <a id="date-search" class="brut-input">${search_date}</a>
+                <a id="nb-results" class="brut-input">${nb_results}</a>
+            </div>
+        </section>
+    `;
+    let container = document.getElementById("search-trips-results");
+
+    for (let trip of trips) {
+        let depart_isen = parseInt(trip.depart_isen);
+        let depart = depart_isen ? trip.isen : trip.ville;
+        let arrivee = depart_isen ? trip.ville : trip.isen;
+
+        let heure_depart = prettier_time(trip.date_depart.split(' ')[1]);
+        let heure_arrivee = prettier_time(trip.date_arrivee.split(' ')[1]);
+        let duree_trajet = prettier_time(trip.duree_trajet);
+
+        let nb_places = parseInt(trip.nb_places_restantes);
+
+        container.innerHTML += `
+            <div class="result-row result">
+                <span class="city">${depart}</span>
+                <span class="time">${heure_depart}</span>
+                <span class="arrow">></span>
+                <span class="city">${arrivee}</span>
+                <span class="time">${heure_arrivee}</span>
+                <span class="duration">Durée : ${duree_trajet}</span>
+                <span class="price">Prix : ${trip.prix}€</span>
+                <span class="seats">${nb_places} place${nb_places > 1 ? 's' : ''}</span>
+                <span class="driver">par ${trip.pseudo}</span>
+                <button class="choice">Choisir</button>
+            </div>
+        `;
+    }
+}
+
+function prettier_time(time) {
+    let hours_mins = time.split(':');
+    hours_mins.pop();
+    return hours_mins.join('h');
 }
 
 // Keep the ID of the timeout, to stop it if the user starts typing again
