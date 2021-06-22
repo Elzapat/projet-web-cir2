@@ -48,7 +48,7 @@ for (let button of choice_buttons) {
             start_ISEN = false;
             end_loc_container.innerHTML = isen_select.replace(":id", "end-input");
             start_loc_container.innerHTML = loc_input
-                .replace(":dest", "de départ")
+                .replace(":dest", "de départ:")
                 .replace(":id", "start-input");
         }
     });
