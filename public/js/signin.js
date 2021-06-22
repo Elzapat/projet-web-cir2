@@ -21,7 +21,7 @@ document.getElementsByClassName("sign-in")[0].onsubmit = () => {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    if (!Cookies.exists("login") && !Cookies.exists("token")) {
+    if (Cookies.exists("login") && Cookies.exists("token")) {
         let main = document.getElementsByTagName("main")[0];
 
         let username = "Pseudo";
