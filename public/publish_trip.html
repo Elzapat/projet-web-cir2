@@ -32,14 +32,25 @@
         </nav>
         <main>
             <form id="publish-trip">
+
+                <div class="publish-row">
+                    <button value="from_ISEN" class="dest-choice" type="button">Partir à l'ISEN</button>
+                    <button value="to_ISEN" class="dest-choice" type="button">Allez à l'ISEN</button>
+                </div>
+                <div class="publish-row">
+                    <div id="start-loc">
+                        <input id="start-input" class="location input-text" placeholder="Adresse de départ" type="text" oninput="autocomplete_addresses(event)" required>
+                    </div>
+                    <div id="end-loc">
+                        <input id="end-input" class="location input-text" placeholder="Adresse d'arrivée" type="text" oninput="autocomplete_addresses(event)" required>
+                    </div>
+                </div>
+
                 <div class="publish-row">
                     <input class="input-text" placeholder="Date de départ" type="date">
-                    <input class="input-text" placeholder="Heure de départ" type="datetime">
+                    <input class="input-text" placeholder="Heure de départ" type="time">
                 </div>
-                <div class="publish-row">
-                    <input class="input-text" placeholder="Lieu de départ" type="text">
-                    <input class="input-text" placeholder="Lieu d'arrivée" type="text">
-                </div>
+
                 <div class="publish-row">
                     <input class="input-text" placeholder="Nombre de places" type="number" min="1" max="10">
                     <input class="input-text" placeholder="Prix" type="number" min="0" max="100">

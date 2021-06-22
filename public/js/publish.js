@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+/*document.addEventListener('DOMContentLoaded', function() {
     if (!Cookies.exists("login") && !Cookies.exists("token")) {
 
         var elems = document.getElementsByClassName('input-text');
@@ -23,3 +23,5 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
 });
+*/
+
