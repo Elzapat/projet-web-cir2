@@ -81,13 +81,55 @@ class dbConnector {
         return true;
     }
 
-    public function add_trip($creator, $price, $seats, $start_datetime,
-            $end_datetime, $start_loc, $end_loc) {
+    public function add_trip($creator, $price, $nb_seats, $start_datetime,
+            $end_datetime, $duration, $start_address, $end_address, $city, $isen,
+            $isen_start) {
+        try {
+            $request = "INSERT INTO trajet (adresse_depart, adresse_arrivee,
+                            duree_trajet, date_depart, date_arrivee,
+                            prix, nb_places_restances, nb_places, depart_isen,
+                            pseudo, code_insee, code_insee_site_isen)
+                        VALUES
+                        (:start_address, :end_address, :duration, :start_datetime,
+                        :end_datetime, :price, :nb_seats, :nb_seats, :isen_start,
+                        :creator, :start, :end)";
+            $stmt = $this->db->prepare($request);
+            $stmt->bindParam(":start_address", $start_address, PDO::PARAM_STR, 255);
+            $stmt->bindParam(":end_address", $end_address, PDO::PARAM_STR, 255);
+            $stmt->bindParam(":duration", $duration, PDO::PARAM_STR, 10);
+            $stmt->bindParam(":start_datetime", $start_datetime, PDO::PARAM_STR, 20);
+            $stmt->bindParam(":end_datetime", $end_datime, PDO::PARAM_STR, 20);
+            $stmt->bindParam(":price", $price, PDO::PARAM_STR, 10);
+            $stmt->bindParam(":nb_seats", $nb_seats, PDO::PARAM_INT);
+            $stmt->bindParam(":isen_start", $isen_start, PDO::PARAM_INT);
+            $stmt->bindParam(":creator", $creator, PDO::PARAM_STR, 25);
+            $start = $isen_start ? $isen : $start;
+            $end = $isen_start ? $start : $isen;
+            $stmt->bindParam(":start", $start, PDO::PARAM_STR, 100);
+            $stmt->bindParam(":end", $end, PDO::PARAM_STR, 100);
+            $stmt->execute();
+        } catch (PDOException $e) {
+            error_log("Request error: " . $e->getMessage());
+            return false;
+        }
 
+        return true;
     }
 
     public function add_passenger_to_trip($trip_id, $passenger) {
+        try {
+            $request = "INSERT INTO passager_trajet (id_trajet, pseudo)
+                        VALUES (:trip_id, :passenger)";
+            $stmt = $this->db->prepare($request);
+            $stmt->bindParam(":trip_id", $trip_id, PDO::PARAM_INT);
+            $stmt->bindParam(":passenger", $passenger, PDO::PARAM_STR, 25);
+            $stmt->execute();
+        } catch (PDOException $e) {
+            error_log("Request error: " . $e->getMessage());
+            return false;
+        }
 
+        return true;
     }
 
     public function check_user_credentials($username, $password) {
