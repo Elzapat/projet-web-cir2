@@ -2,9 +2,9 @@ INSERT INTO site_isen (code_insee, adresse, nom)
 VALUES
 ("29019", "20, rue Cuirassé Bretagne", "ISEN Brest"),
 ("35238", "2, rue de la Châtaigneraie", "ISEN Rennes"),
-("59350", "41, boulevard Vauban", "ISEN Lilles"),
+("59350", "41, boulevard Vauban", "ISEN Lille"),
 ("44109", "35, avenue du Champ de Manœuvre", "ISEN Nantes"),
-("21231", "8, avenue Croix Guérin", "ISEN Caen"),
+("14118", "8, avenue Croix Guérin", "ISEN Caen"),
 ("83137", "place Georges Pompidou", "ISEN Toulon");
 
 INSERT INTO utilisateur (pseudo, prenom, nom, mot_de_passe, num_tel, jeton_auth)
