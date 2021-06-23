@@ -1,7 +1,5 @@
 <?php
 
-include_once "../constants.php";
-
 class dbConnector {
     private $db;
 
@@ -84,6 +82,7 @@ class dbConnector {
     public function add_trip($creator, $price, $nb_seats, $start_datetime,
             $end_datetime, $duration, $start_address, $end_address, $city, $isen,
             $isen_start) {
+        var_dump($isen_start);
         try {
             $request = "INSERT INTO trajet (adresse_depart, adresse_arrivee,
                             duree_trajet, date_depart, date_arrivee,
@@ -103,8 +102,8 @@ class dbConnector {
             $stmt->bindParam(":nb_seats", $nb_seats, PDO::PARAM_INT);
             $stmt->bindParam(":isen_start", $isen_start, PDO::PARAM_INT);
             $stmt->bindParam(":creator", $creator, PDO::PARAM_STR, 25);
-            $start = $isen_start ? $isen : $city;
-            $end = $isen_start ? $city : $isen;
+            $start = $isen_start == 1 ? $isen : $city;
+            $end = $isen_start == 1 ? $city : $isen;
             $stmt->bindParam(":start", $start, PDO::PARAM_STR, 100);
             $stmt->bindParam(":end", $end, PDO::PARAM_STR, 100);
             $stmt->execute();
@@ -176,7 +175,7 @@ class dbConnector {
             return false;
         }
 
-        return isset($result) ? $result[0]["pseudo"] : false;
+        return isset($result) && !empty($result) ? $result[0]["pseudo"] : false;
     }
 
     public function check_username_existence($username) {

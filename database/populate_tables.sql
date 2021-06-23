@@ -4,7 +4,7 @@ VALUES
 ("35238", "2, rue de la Châtaigneraie", "ISEN Rennes"),
 ("59350", "41, boulevard Vauban", "ISEN Lilles"),
 ("44109", "35, avenue du Champ de Manœuvre", "ISEN Nantes"),
-("14118", "8, avenue Croix Guérin", "ISEN Caen"),
+("21231", "8, avenue Croix Guérin", "ISEN Caen"),
 ("83137", "place Georges Pompidou", "ISEN Toulon");
 
 INSERT INTO utilisateur (pseudo, prenom, nom, mot_de_passe, num_tel, jeton_auth)

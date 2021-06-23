@@ -155,6 +155,7 @@ function display_trips_results(search_city, search_isen, search_date, trips) {
                     data-start-time="${heure_depart}"
                     data-end-time="${heure_arrivee}"
                     data-price="${trip.prix}"
+                    data-trip-id="${trip.id_trajet}"
                     class="choice"
                 >
                     Choisir
@@ -202,13 +203,32 @@ function display_validation_page(button) {
                     <a class="text-valid">5,00€</a>
                 </div>
                 <div class="publish-row">
-                    <button>Valider</button>
+                    <button id="validate-trip">Valider</button>
                 </div>
                 <div class="publish-row">
                     <button>Télécharger le récapitulatif</button>
                 </div>
             </section>
         `;
+
+        document.getElementById("validate-trip").addEventListener("click", () => {
+            let options = {
+                method: "POST",
+                body: JSON.stringify({
+                    id_trajet: button.dataset.tripId,
+                    login: Cookies.get("login")
+                }),
+                headers: new Headers({ "Authorization": "Bearer " + Cookies.get("token") })
+            };
+            fetch(`../api/v1/request.php/trajets/passagers`, options)
+                .then(response => {
+                    if (!response.ok)
+                        throw new Error("Erreur à la validation");
+                    alert("Inscription validée ! Vous partez pour " + button.dataset.endLoc);
+                    location.replace("../search_trips.html");
+                });
+                
+        });
     }, 500);
 }
 
