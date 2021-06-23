@@ -150,7 +150,7 @@ function display_trips_results(search_city, search_isen, search_date, trips) {
                 <span class="seats">${nb_places} place${nb_places > 1 ? 's' : ''}</span>
                 <span class="driver">par ${trip.pseudo}</span>
                 <button
-                    id="choise-button"
+                    id="choice-button"
                     data-start-loc="${depart}"
                     data-end-loc="${arrivee}"
                     data-start-time="${heure_depart}"

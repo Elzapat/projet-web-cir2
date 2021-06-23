@@ -48,7 +48,6 @@ main {
     transition: all 200ms ease;
 }
 
-
 .date {
     font-size: 2rem;
     width: 25%;
@@ -198,12 +197,16 @@ select.input-text {
 }
 
 .duration, .seats, .driver {
-    margin-left: 7%;
+    margin-left: 6%;
     font-size: 1.8rem;
 }
 
 .price {
     margin-left: 7%;
+}
+
+.choice-button {
+    margin-left: auto;
 }
 
 .choice {
