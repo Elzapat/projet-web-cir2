@@ -11,8 +11,8 @@ document.getElementsByClassName("sign-in")[0].onsubmit = () => {
 
             log_in();
             change_connect_page();
-            history.go(-1);
             console.log(document.referrer);
+            //history.go(-1);
         })
         .catch(error => {
             info.innerHTML = error.message;
