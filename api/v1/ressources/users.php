@@ -17,6 +17,9 @@ function users($request_method, $request) {
             if ($request[0] == "pseudo" || isset($request[1])) {
                 $data = $db->check_username_existence($request[1]);
                 send_response($data, isset($data) ? 200 : 400);
+            } else if ( isset($request[0]) ) {
+                $data = $db->get_user_infos($request[0]);
+                send_response($data, isset($data) ? 200 : 400);
             } else {
                 send_response(null, 400);
             }

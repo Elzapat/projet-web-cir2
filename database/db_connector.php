@@ -193,6 +193,21 @@ class dbConnector {
 
         return $result != null;
     }
+
+    public function get_user_infos($username) {
+        try {
+            $request = "SELECT pseudo, prenom, nom, num_tel FROM utilisateur WHERE pseudo=:username";
+            $stmt = $this->db->prepare($request);
+            $stmt->bindParam(":username", $username, PDO::PARAM_STR);
+            $stmt->execute();
+            $result = $stmt->fetch();
+        } catch (PDOException $e) {
+            error_log("Request error: " . $e->getMessage());
+            return null;
+        }
+
+        return $result != null;
+    }
 }
 
 
