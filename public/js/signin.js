@@ -10,11 +10,13 @@ document.getElementsByClassName("sign-in")[0].onsubmit = () => {
             //info.style.opacity = 1;
 
             log_in();
-            change();
+            change_connect_page();
+            console.log("call change function");
             history.go(-1);
         })
         .catch(error => {
             info.innerHTML = error.message;
+            console.log(error.message);
             info.style.opacity = 1;
         });
 
@@ -22,10 +24,10 @@ document.getElementsByClassName("sign-in")[0].onsubmit = () => {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    change();
+    change_connect_page();
 });
 
-function change() {
+function change_connect_page() {
     if (Cookies.exists("login") && Cookies.exists("token")) {
         let main = document.getElementsByTagName("main")[0];
         console.log("change function");
