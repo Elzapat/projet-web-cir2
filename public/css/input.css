@@ -5,6 +5,7 @@ input, select, .input-text {
     font-size: 2rem;
     padding-top: 2vh;
     width: 25vw;
+    overflow: hidden;
 }
 
 .input-text::-webkit-input-placeholder {
