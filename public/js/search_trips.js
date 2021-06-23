@@ -150,6 +150,7 @@ function display_trips_results(search_city, search_isen, search_date, trips) {
                 <span class="seats">${nb_places} place${nb_places > 1 ? 's' : ''}</span>
                 <span class="driver">par ${trip.pseudo}</span>
                 <button
+                    id="choise-button"
                     data-start-loc="${depart}"
                     data-end-loc="${arrivee}"
                     data-start-time="${heure_depart}"
@@ -165,9 +166,15 @@ function display_trips_results(search_city, search_isen, search_date, trips) {
 
     // Validation page when choosing a trip
     for (let button of document.getElementsByClassName("choice")) {
-        button.addEventListener("click", event => {
-            display_validation_page(event.target);
-        });
+        
+        if (!Cookies.exists("login") && !Cookies.exists("token")) {
+            document.getElementById("choise-button").innerHTML = "Se connecter";
+            button.setAttribute('onclick',"window.location.href='signin.html';");
+        } else {
+            button.addEventListener("click", event => {
+                display_validation_page(event.target);
+            });
+        }
     }
 
 }
