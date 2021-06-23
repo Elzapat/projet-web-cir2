@@ -39,7 +39,6 @@ function change() {
                     user_infos.push(inf["nom"]);
                     user_infos.push(inf["prenom"]);
                     user_infos.push(inf["num_tel"]);
-                    console.log(user_infos);
                 });
             })
             .catch(err => {
@@ -48,9 +47,9 @@ function change() {
             });
         
         //faut aller chercher le reste dans la base
-        let first_name = "Prénom"; 
-        let last_name = "Nom";
-        let phone = "Numéro de téléphone";
+        let first_name = user_infos[1]; 
+        let last_name = user_infos[0];
+        let phone = user_infos[2];
     
         main.innerHTML = `
             <form class="sign-up">
