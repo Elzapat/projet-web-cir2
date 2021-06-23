@@ -6,9 +6,9 @@ define("DB_PORT", "3306");
 define("DB_NAME", "user7");
 define("DB_USERNAME", "user7");
 // Cette façon d'enregistrer le mot de passe est très peu
-// sécurisée mais j'ai la flemme euhh
+// sécurisée mais bon voila
 define("DB_PASSWORD", "xeGFeCIjFDu4OUTC");
 
-define("MAX_TRIPS_RETRIEVE", "10");
+define("MAX_TRIPS_RETRIEVE", 10);
 
 ?>
