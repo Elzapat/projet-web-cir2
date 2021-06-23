@@ -36,10 +36,9 @@ footer {
     padding: 30px;
 }
 
-
 .last { /* Dernier élément de la page, copyright et mentions légales */
     position: absolute;
-    bottom: 20px;
+    bottom: 20%;
     left: 50%;
     text-align: center;
     transform: translate(-50%, 0%);
