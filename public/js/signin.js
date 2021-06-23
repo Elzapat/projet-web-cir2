@@ -31,18 +31,19 @@ function change() {
         
         let username = Cookies.get("login");
 
-        let infos = new Array();
+        let user_infos = new Array();
         fetch(`../api/v1/request.php/utilisateurs/${username}`, { method: "GET" })
             .then(response => response.json())
             .then(infos => {
                 user_infos.push(infos);
+                console.log(user_infos);
             })
             .catch(err => {
                 info.innerHTML = `Erreur à l'obtention des infos utilisateurs (${err.message})`;
                 info.style.opacity = 1;
             });
 
-        console.log(infos);
+        console.log(user_infos);
         
         //faut aller chercher le reste dans la base
         let first_name = "Prénom"; 
