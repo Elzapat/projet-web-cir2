@@ -5,3 +5,7 @@
 .input-text {
     color: var(--text-color);
 }
+
+a {
+    overflow: hidden;
+}
