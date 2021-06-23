@@ -11,8 +11,11 @@ document.getElementsByClassName("sign-in")[0].onsubmit = () => {
 
             log_in();
             change_connect_page();
-            console.log(document.referrer);
-            //history.go(-1);
+            var prev = document.referrer;
+            prev_word = prev.split('/');
+            if (prev_word[prev_word.length] != "signup.html") {
+                history.go(-1);
+            }
         })
         .catch(error => {
             info.innerHTML = error.message;
