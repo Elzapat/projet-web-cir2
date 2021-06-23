@@ -107,6 +107,7 @@ class dbConnector {
             $stmt->bindParam(":start", $start, PDO::PARAM_STR, 100);
             $stmt->bindParam(":end", $end, PDO::PARAM_STR, 100);
             $stmt->execute();
+            var_dump($stmt);
         } catch (PDOException $e) {
             error_log("Request error: " . $e->getMessage());
             return false;
