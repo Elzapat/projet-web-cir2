@@ -41,10 +41,10 @@ function change() {
   
                     main.innerHTML = `
                     <form class="sign-up">
-                        <a id="username" class="input-text">${username}</a>
-                        <a id="first-name" class="input-text">${first_name}</a>
-                        <a id="last-name" class="input-text">${last_name}</a>
-                        <a id="phone" class="input-text">${phone}</a>
+                        <a id="username" class="input-text">Pseudo : ${username}</a>
+                        <a id="first-name" class="input-text">Prénom : ${first_name}</a>
+                        <a id="last-name" class="input-text">Nom : ${last_name}</a>
+                        <a id="phone" class="input-text">Tél : ${phone}</a>
                         <button id="disconnect" type="submit" onclick="Cookies.delete_all()">Se déconnecter</button>
                     </form>
                     `;
