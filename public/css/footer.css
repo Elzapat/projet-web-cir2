@@ -26,6 +26,11 @@ footer {
     color: black;
 }
 
+.names { /* Texte mention légale */
+    text-decoration: none; /* enlevé la décoration de base */
+    color: black;
+}
+
 .notices:hover { /* Survole du texte mention légale */
     cursor: pointer;
     text-decoration: none;
