@@ -114,8 +114,9 @@ async function add_trip(city, isen_city) {
 
     let end_time = document.getElementById("time-a").value.split(':');
 
-    let min_hour_start = parseInt(start_time[0]*60);
-    let min_hour_end = parseInt(end_time[0]*60);
+
+    let min_hour_start = parseInt(start_time[0] * 60);
+    let min_hour_end = parseInt(end_time[0] * 60);
 
     let min_duration = min_hour_start-min_hour_end;
     if (min_duration < 0) {
