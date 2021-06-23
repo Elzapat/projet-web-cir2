@@ -232,9 +232,11 @@ function display_validation_page(button) {
                     if (!response.ok)
                         throw new Error("Erreur à la validation");
                     alert("Inscription validée ! Vous partez pour " + button.dataset.endLoc);
-                    location.replace("../search_trips.html");
+                    location.replace("search_trips.html");
+                })
+                .catch(err => {
+                    alert("Erreur: " + err.message);
                 });
-                
         });
     }, 500);
 }
