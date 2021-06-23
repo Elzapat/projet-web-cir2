@@ -23,11 +23,25 @@ footer {
 
 .notices { /* Texte mention légale */
     text-decoration: none; /* enlevé la décoration de base */
-    color: black;
+    color: white;
 }
 
 #notices:hover { /* Survole du texte mention légale */
     text-decoration: none;
-    color: rgb(248, 0, 0);
+    color: rgb(185, 185, 185);
     transition: 0.2s ease;
+}
+
+.reseaux { /* Les réseaux */
+    padding: 30px;
+}
+
+
+.last { /* Dernier élément de la page, copyright et mentions légales */
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    text-align: center;
+    transform: translate(-50%, 0%);
+    font-size: 20px;
 }
