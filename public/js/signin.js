@@ -43,6 +43,7 @@ function change() {
                     last_name =inf["nom"];
                     first_name = inf["prenom"];
                     phone = inf["num_tel"];
+                    console.log(phone);
                 });
             })
             .catch(err => {
