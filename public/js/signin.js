@@ -46,7 +46,7 @@ function change() {
                 info.style.opacity = 1;
             });
         
-        //faut aller chercher le reste dans la base
+        console.log(user_infos);
         let first_name = user_infos[1]; 
         let last_name = user_infos[0];
         let phone = user_infos[2];
