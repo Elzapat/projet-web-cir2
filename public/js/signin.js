@@ -31,7 +31,7 @@ function change() {
         
         let username = Cookies.get("login");
 
-        let user_infos = new Array();
+        var user_infos = new Array();
         fetch(`../api/v1/request.php/utilisateurs/${username}`, { method: "GET" })
             .then(response => response.json())
             .then(infos => {
