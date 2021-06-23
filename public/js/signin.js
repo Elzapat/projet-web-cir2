@@ -36,7 +36,9 @@ function change() {
             .then(response => response.json())
             .then(infos => {
                 infos.forEach(inf => {
-                    user_infos.push(inf);
+                    user_infos.push(inf["nom"]);
+                    user_infos.push(inf["prenom"]);
+                    user_infos.push(inf["num_tel"]);
                     console.log(user_infos);
                 });
             })
