@@ -35,7 +35,8 @@ document.getElementsByClassName("sign-up")[0].onsubmit = () => {
                 //info.innerHTML = "Compte créé avec succès";
                 //info.style.opacity = 1;
                 console.log("Compte créé avec succès");
-                document.location.href="signin.html"; 
+                document.location.href="signin.html";
+                change();
             });
         })
         .catch(error => {
