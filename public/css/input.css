@@ -4,7 +4,7 @@ input, select, .input-text {
     color: var(--input-color);
     font-size: 2rem;
     padding-top: 2vh;
-    width: 25vw;
+    width: 20vw;
 }
 
 .input-text::-webkit-input-placeholder {
