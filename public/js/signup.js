@@ -37,6 +37,7 @@ document.getElementsByClassName("sign-up")[0].onsubmit = () => {
 
                 document.location.href="signin.html";
                 validate_login(username,password);
+                change_connect_page();
             });
         })
         .catch(error => {
