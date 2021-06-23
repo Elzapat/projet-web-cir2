@@ -47,7 +47,8 @@ function change() {
                 info.style.opacity = 1;
             });
 
-
+        console.log(inf["prenom"]);
+        
         //faut aller chercher le reste dans la base
         let first_name = "Prénom"; 
         let last_name = "Nom";
