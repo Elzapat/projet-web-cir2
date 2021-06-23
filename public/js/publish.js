@@ -30,7 +30,7 @@ function disable(elems) {
     }
 }
 
-document.getElementById("publish-trip").onsubmit = () => {
+document.getElementById("publish-trip").onsubmit = event => {
     // If no choice button is selected, show an error and abort
     let selected = false;
     for (let button of choice_buttons) {
@@ -64,8 +64,13 @@ document.getElementById("publish-trip").onsubmit = () => {
             isen_city = isen_city_info;
             return add_trip(city, isen_city);
         })
-        .then(() => {
-
+        .then(success => {
+            if (success) {
+                info.innerHTML = "Votre trajet a été publié avec succès";
+                info.style.opacity = 1;
+                event.target.reset();
+            } else
+                throw new Error("Erreur interne");
         })
         .catch(err => {
             info.innerHTML = err.message;
@@ -110,7 +115,6 @@ async function add_trip(city, isen_city) {
                     (parseInt(start_time[1]) + parseInt(duration[0])).toString()];
     let end_datetime = start_date + ' ' + end_time.join(':');
 
-    console.log([city, isen_city]);
     let options = {
         method: "POST",
         body: JSON.stringify({
@@ -130,9 +134,5 @@ async function add_trip(city, isen_city) {
     };
 
     return fetch("../api/v1/request.php/trajets", options)
-        .then(response => {
-            console.log(response.status);
-            return response.text();
-        })
-        .then(data => console.log(data));
+        .then(response => response.json())
 }

@@ -43,7 +43,6 @@ function trips($request_method, $request) {
                     !isset($req["isen_start"]))
                 send_response(null, 400);
 
-            var_dump($req);
             $data = $db->add_trip($req["login"], $req["price"], $req["nb_seats"],
                 $req["start_datetime"], $req["end_datetime"], $req["duration"],
                 $req["start_address"], $req["end_address"], $req["city"],
