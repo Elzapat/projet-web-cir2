@@ -37,6 +37,7 @@ function change() {
             .then(infos => {
                 infos.forEach(inf => {
                     user_infos.push(inf);
+                    console.log(user_infos);
                 });
             })
             .catch(err => {
