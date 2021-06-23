@@ -32,21 +32,18 @@ function change() {
         let username = Cookies.get("login");
 
         let user_infos = new Array();
-        fetch(`../api/v1/request.php/utilisateurs/${username}`, { method: "GET" })
+        fetch("../api/v1/request.php/sites_isen", { method: "GET" })
             .then(response => response.json())
             .then(infos => {
-                infos.forEach(inf => {
-                    user_infos.push(inf);
+                infos.forEach(loc => {
+                    user_infos.push(loc["nom"]);
                     console.log(user_infos);
-
                 });
             })
             .catch(err => {
                 info.innerHTML = `Erreur à l'obtention des infos utilisateurs (${err.message})`;
                 info.style.opacity = 1;
             });
-
-        let tab = JSON.parse(user_infos);
         
         //faut aller chercher le reste dans la base
         let first_name = "Prénom"; 
