@@ -35,11 +35,8 @@ function change() {
         fetch(`../api/v1/request.php/utilisateurs/${username}`, { method: "GET" })
             .then(response => response.json())
             .then(infos => {
-                infos.forEach(inf => {
-                    user_infos.push(inf);
-                    console.log(user_infos);
-
-                });
+                user_infos.push(infos);
+                console.log(user_infos);
             })
             .catch(err => {
                 info.innerHTML = `Erreur à l'obtention des infos utilisateurs (${err.message})`;
@@ -47,7 +44,6 @@ function change() {
             });
 
         console.log(user_infos);
-        console.log(user_infos[0]["prenom"]);
         
         //faut aller chercher le reste dans la base
         let first_name = "Prénom"; 
