@@ -42,7 +42,7 @@ function change() {
                 <a id="first-name" class="input-text">${first_name}</a>
                 <a id="last-name" class="input-text">${last_name}</a>
                 <a id="phone" class="input-text">${phone}</a>
-                <button id="disconnect" type="button">Se déconnecter</button>
+                <button id="disconnect" type="submit" onclick="Cookies.delete_all()">Se déconnecter</button>
             </form>
     `;
     }
