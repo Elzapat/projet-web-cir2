@@ -159,8 +159,7 @@ function display_trips_results(search_city, search_isen, search_date, trips) {
                     data-price="${trip.prix}"
                     data-trip-id="${trip.id_trajet}"
                     class="choice"
-                >
-                </span>
+                ></span>
                     Choisir
                 </button>
             </div>
