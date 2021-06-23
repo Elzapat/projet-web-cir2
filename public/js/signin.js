@@ -11,12 +11,16 @@ document.getElementsByClassName("sign-in")[0].onsubmit = () => {
 
             log_in();
             change_connect_page();
-            console.log("call change function");
-            history.go(-1);
+            var prev = document.referrer;
+            prev_word = prev.split('/');
+
+            if (prev_word[prev_word.length-1] != "signup.html") {
+                history.go(-1);
+            }
+
         })
         .catch(error => {
             info.innerHTML = error.message;
-            console.log(error.message);
             info.style.opacity = 1;
         });
 
@@ -30,7 +34,6 @@ document.addEventListener('DOMContentLoaded', function() {
 function change_connect_page() {
     if (Cookies.exists("login") && Cookies.exists("token")) {
         let main = document.getElementsByTagName("main")[0];
-        console.log("change function");
         let username = Cookies.get("login");
 
         fetch(`../api/v1/request.php/utilisateurs/${username}`, { method: "GET" })
