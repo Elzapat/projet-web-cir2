@@ -47,7 +47,7 @@ function change() {
                 info.style.opacity = 1;
             });
 
-        console.log(inf["prenom"]);
+        console.log(user_infos["prenom"]);
         
         //faut aller chercher le reste dans la base
         let first_name = "Prénom"; 
