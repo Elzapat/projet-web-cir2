@@ -87,6 +87,10 @@ main {
     font-size: 2rem;
 }
 
+#end-input, #start-input {
+    width: 100%;
+}
+
 select.input-text {
     height: 100%;
     background-color: var(--background-color);
