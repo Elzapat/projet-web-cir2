@@ -41,9 +41,12 @@ main {
 
 .loc-p {
     margin: 0;
-    width: auto;
     height: 100%;
     position: relative;
+}
+
+.location {
+    width: 25vw;
 }
 
 #info {
