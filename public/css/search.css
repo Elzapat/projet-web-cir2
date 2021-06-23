@@ -47,10 +47,6 @@ main {
     transition: all 200ms ease;
 }
 
-.selected {
-    color: var(--accent-color);
-    background-color: var(--background-color);
-}
 
 .date {
     font-size: 2rem;

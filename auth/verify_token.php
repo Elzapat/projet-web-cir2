@@ -2,7 +2,7 @@
 
 function verify_token($db) {
     $headers = getallheaders();
-    $token = $headers["Authorization"];
+    $token = $headers["authorization"];
 
     if (preg_match("/Bearer (.*)/", $token, $tab))
         $token = $tab[1];

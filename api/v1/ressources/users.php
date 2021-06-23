@@ -1,9 +1,5 @@
 <?php
 
-include_once "../../utils.php";
-include_once "../../constants.php";
-include_once "../../database/db_connector.php";
-
 function users($request_method, $request) {
     try {
         $db = new dbConnector; 
@@ -14,7 +10,7 @@ function users($request_method, $request) {
 
     switch ($request_method) {
         case "GET":
-            if ($request[0] == "pseudo" || isset($request[1])) {
+            if ($request[0] == pseudo && isset($request[1])) {
                 $data = $db->check_username_existence($request[1]);
                 send_response($data, isset($data) ? 200 : 400);
             } else if ( isset($request[0]) ) {

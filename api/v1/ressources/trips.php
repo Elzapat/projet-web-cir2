@@ -1,10 +1,5 @@
 <?php
 
-include_once "../../utils.php";
-include_once "../../constants.php";
-include_once "../../database/db_connector.php";
-include_once "../../auth/verify_token.php";
-
 function trips($request_method, $request) {
     try {
         $db = new dbConnector; 
@@ -27,9 +22,10 @@ function trips($request_method, $request) {
             send_response($data, 200);
         case "POST":
             $req = json_decode(file_get_contents("php://input"), true);
+
             if (isset($req["login"])) {
                 $token_login = verify_token($db);
-                if ($token_login != $login)
+                if ($token_login != $req["login"])
                     send_response(null, 401);
             }
 
@@ -47,13 +43,12 @@ function trips($request_method, $request) {
                     !isset($req["isen_start"]))
                 send_response(null, 400);
 
-                // Check if the client has proper authorization
-
-                $data = $db->add_trip($req["login"], $req["price"], $req["nb_seats"],
-                    $req["start_datetime "], $req["end_datetime"], $req["duration"],
-                    $req["start_address"], $req["end_address"], $req["city"],
-                    $req["isen"], $req["isen_start"]);
-                send_reponse($data, $data ? 200 : 500);
+            var_dump($req);
+            $data = $db->add_trip($req["login"], $req["price"], $req["nb_seats"],
+                $req["start_datetime"], $req["end_datetime"], $req["duration"],
+                $req["start_address"], $req["end_address"], $req["city"],
+                $req["isen"], $req["isen_start"]);
+            send_response($data, $data ? 200 : 500);
         default:
             send_response(null, 400);
     }

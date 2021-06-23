@@ -5,7 +5,7 @@ function autocomplete_addresses(event) {
     let input = event.target.value;
     // Stop the queued timeout so as not to spam the API
     clearTimeout(timeout);
-    timeout = setTimeout(() => fetch_matching_addresses(event.target, input), 1000);
+    timeout = setTimeout(() => fetch_matching_addresses(event.target, input), 300);
 }
 
 // Remove all autocomplete items
@@ -36,6 +36,31 @@ function autocomplete(input, results) {
         }
         list.appendChild(item);
     }
+}
+
+function fetch_matching_addresses(input, query) {
+    if (query == "")
+        return;
+    // Using the photon API, which uses OpenStreetMap
+    // Limiting the number of results to 10 and puttkjdqmlksjdqlmsng priority to BRETAGNE
+    let request = `https://api-adresse.data.gouv.fr/search/?q=${query}&limit=10`;
+
+    fetch(request, { method: "GET" })
+        .then(response => response.json())
+        .then(data => {
+            let results = new Array();
+            data.features.forEach(res => {
+                let street = res.properties.street ?? res.properties.name ?? "";
+                let city = res.properties.city ?? "";
+                results.push({
+                    name: `${street} <strong>${city}</strong>`,
+                    lon: res.geometry.coordinates[0] ?? 0.0,
+                    lat: res.geometry.coordinates[1] ?? 0.0
+                });
+            });
+            autocomplete(input, results);
+        });
+        // .catch(err => console.log(err));
 }
 
 // Close the autocomplete when the page is clicked

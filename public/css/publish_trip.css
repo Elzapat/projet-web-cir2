@@ -35,6 +35,15 @@ main {
     align-items: center;
 }
 
+.dest-choice {
+    height: 4rem;
+    width: 33%;
+    border: 0.2rem solid var(--accent-color);
+    font-size: 2rem;
+    transition: all 200ms ease;
+}
+
+
 .input-text[type="text"] {
     height: 100%;
 }
@@ -47,6 +56,11 @@ main {
 
 .location {
     width: 25vw;
+}
+
+.selected {
+    color: var(--accent-color);
+    background-color: var(--background-color);
 }
 
 #info {
