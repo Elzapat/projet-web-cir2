@@ -131,8 +131,7 @@ async function add_trip(city, isen_city) {
     //let duration = "01:30".split(':');
     let duration = `${hour_s}:${min_s}`.split(':');
 
-    let end_time = [(parseInt(start_time[0]) + parseInt(duration[0])).toString(),
-                    (parseInt(start_time[1]) + parseInt(duration[0])).toString()];
+    //let end_time = [(parseInt(start_time[0]) + parseInt(duration[0])).toString(), (parseInt(start_time[1]) + parseInt(duration[0])).toString()];
     let end_datetime = start_date + ' ' + end_time.join(':');
 
     let options = {
