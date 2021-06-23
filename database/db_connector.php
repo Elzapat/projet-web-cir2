@@ -1,5 +1,7 @@
 <?php
 
+include_once "../constants.php";
+
 class dbConnector {
     private $db;
 

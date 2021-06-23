@@ -1,5 +1,6 @@
 <?php
 
+include_once "../constants.php";
 include_once "../utils.php";
 include_once "../database/db_connector.php";
 

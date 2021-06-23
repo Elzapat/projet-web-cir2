@@ -165,16 +165,9 @@ function display_trips_results(search_city, search_isen, search_date, trips) {
 
     // Validation page when choosing a trip
     for (let button of document.getElementsByClassName("choice")) {
-        if (Cookies.exists("login") && Cookies.exists("token")) {
-            button.addEventListener("click", event => {
-                display_validation_page(event.target);
-            });
-        } else {
-            document.getElementById("choise-button").innerHTML = "Se connecter";
-            button.addEventListener("click", event => {
-                button.setAttribute('onclick',"window.location.href='signin.html';");
-            });
-        }
+        button.addEventListener("click", event => {
+            display_validation_page(event.target);
+        });
     }
 
 }
