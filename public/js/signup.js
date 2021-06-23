@@ -8,7 +8,7 @@ document.getElementsByClassName("sign-up")[0].onsubmit = () => {
 
     let info = document.getElementById("info");
 
-    if (password != password_confirm) {
+    if (password != password_confirm) {         //si les deux mots de passe sont différents
         info.innerHTML = "Les deux mots de passe rentrés sont différents";
         info.style.opacity = 1;
         return false;
@@ -35,7 +35,7 @@ document.getElementsByClassName("sign-up")[0].onsubmit = () => {
                 //info.innerHTML = "Compte créé avec succès";
                 //info.style.opacity = 1;
 
-                document.location.href="signin.html";
+                document.location.href="signin.html";       //redirection vers la page de connexion
             });
         })
         .catch(error => {
