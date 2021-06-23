@@ -27,8 +27,8 @@ class dbConnector {
                             AND DATE_ADD(DATE(t.date_depart), INTERVAL 7 DAY) >= :date
                             AND t.nb_places_restantes > 0
                         LIMIT :limit";
-            $city = $isen_start ? $end : $start;
-            $isen = $isen_start ? $start : $end;
+            $isen = $isen_start == 1 ? $start : $end;
+            $city = $isen_start == 1 ? $end : $start;
 
             $stmt = $this->db->prepare($request);
             $stmt->bindParam(":city", $city, PDO::PARAM_STR, 100);
