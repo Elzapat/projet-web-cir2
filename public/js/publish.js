@@ -108,7 +108,7 @@ async function get_city_info(city) {
 }
 
 async function add_trip(city, isen_city) {
-    // TODO: use an API to automate this shit
+    // TODO: use an API to automate this
     let start_time = document.getElementById("time").value.split(':');
     let start_date = document.getElementById("date").value;
     let duration = "01:30".split(':');
