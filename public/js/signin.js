@@ -31,26 +31,24 @@ function change() {
         
         let username = Cookies.get("login");
 
-        var user_infos = new Array();
+        let user_infos = new Array();
+        let first_name; 
+        let last_name;
+        let phone;
+
         fetch(`../api/v1/request.php/utilisateurs/${username}`, { method: "GET" })
             .then(response => response.json())
             .then(infos => {
                 infos.forEach(inf => {
-                    user_infos.push(inf["nom"]);
-                    user_infos.push(inf["prenom"]);
-                    user_infos.push(inf["num_tel"]);
-                    console.log(user_infos);
+                    last_name =inf["nom"];
+                    first_name = inf["prenom"];
+                    phone = inf["num_tel"];
                 });
             })
             .catch(err => {
                 info.innerHTML = `Erreur à l'obtention des infos utilisateurs (${err.message})`;
                 info.style.opacity = 1;
             });
-        
-        console.log(user_infos);
-        let first_name = user_infos[1]; 
-        let last_name = user_infos[0];
-        let phone = user_infos[2];
     
         main.innerHTML = `
             <form class="sign-up">
