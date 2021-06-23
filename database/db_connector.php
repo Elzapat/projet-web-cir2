@@ -25,6 +25,7 @@ class dbConnector {
                         WHERE v.nom = :city AND i.nom = :isen_loc
                             AND DATE(t.date_depart) <= :date
                             AND DATE_ADD(DATE(t.date_depart), INTERVAL 7 DAY) >= :date
+                            AND t.nb_places_restantes > 0
                         LIMIT :limit";
             $city = $isen_start ? $end : $start;
             $isen = $isen_start ? $start : $end;
@@ -122,6 +123,12 @@ class dbConnector {
             $stmt = $this->db->prepare($request);
             $stmt->bindParam(":trip_id", $trip_id, PDO::PARAM_INT);
             $stmt->bindParam(":passenger", $passenger, PDO::PARAM_STR, 25);
+            $stmt->execute();
+
+            $request = "UPDATE trajet SET nb_places_restantes = nb_places_restantes - 1
+                        WHERE id_trajet = :id";
+            $stmt = $this->db->prepare($request);
+            $stmt->bindParam(":id", $trip_id, PDO::PARAM_INT);
             $stmt->execute();
         } catch (PDOException $e) {
             error_log("Request error: " . $e->getMessage());
