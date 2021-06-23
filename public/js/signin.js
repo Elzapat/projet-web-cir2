@@ -31,34 +31,30 @@ function change() {
         
         let username = Cookies.get("login");
 
-        let user_infos = new Array();
-        let first_name; 
-        let last_name;
-        let phone;
-
         fetch(`../api/v1/request.php/utilisateurs/${username}`, { method: "GET" })
             .then(response => response.json())
             .then(infos => {
                 infos.forEach(inf => {
-                    last_name =inf["nom"];
-                    first_name = inf["prenom"];
-                    phone = inf["num_tel"];
-                    console.log(phone);
+                    let last_name =inf["nom"];
+                    let first_name = inf["prenom"];
+                    let phone = inf["num_tel"];
+  
+                    main.innerHTML = `
+                    <form class="sign-up">
+                        <a id="username" class="input-text">${username}</a>
+                        <a id="first-name" class="input-text">${first_name}</a>
+                        <a id="last-name" class="input-text">${last_name}</a>
+                        <a id="phone" class="input-text">${phone}</a>
+                        <button id="disconnect" type="submit" onclick="Cookies.delete_all()">Se déconnecter</button>
+                    </form>
+                    `;
+
                 });
             })
             .catch(err => {
                 info.innerHTML = `Erreur à l'obtention des infos utilisateurs (${err.message})`;
                 info.style.opacity = 1;
             });
-    
-        main.innerHTML = `
-            <form class="sign-up">
-                <a id="username" class="input-text">${username}</a>
-                <a id="first-name" class="input-text">${first_name}</a>
-                <a id="last-name" class="input-text">${last_name}</a>
-                <a id="phone" class="input-text">${phone}</a>
-                <button id="disconnect" type="submit" onclick="Cookies.delete_all()">Se déconnecter</button>
-            </form>
-    `;
+        
     }
 }
