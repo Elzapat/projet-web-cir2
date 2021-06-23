@@ -168,7 +168,7 @@ class dbConnector {
         try {
             $request = "SELECT pseudo FROM utilisateur WHERE jeton_auth=:token";
             $stmt = $this->db->prepare($request);
-            $stmt->bindParam(":token", $token, PDO::PARAM_STR, 20);
+            $stmt->bindParam(":token", $token, PDO::FETCH, 20);
             $stmt->execute();
             $result = $stmt->fetch();
         } catch (PDOException $e) {
@@ -200,7 +200,7 @@ class dbConnector {
             $stmt = $this->db->prepare($request);
             $stmt->bindParam(":username", $username, PDO::PARAM_STR);
             $stmt->execute();
-            $result = $stmt->fetch();
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
             error_log("Request error: " . $e->getMessage());
             return null;
