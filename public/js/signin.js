@@ -32,12 +32,12 @@ function change() {
         let username = Cookies.get("login");
 
         let user_infos = new Array();
-        fetch("../api/v1/request.php/sites_isen", { method: "GET" })
+        fetch(`../api/v1/request.php/utilisateurs/${username}`, { method: "GET" })
             .then(response => response.json())
             .then(infos => {
-                infos.forEach(loc => {
-                    user_infos.push(loc["nom"]);
-                    console.log(loc["nom"]);
+                infos.forEach(inf => {
+                    user_infos.push(inf["nom"]);
+                    console.log(inf["nom"]);
                     console.log(user_infos);
                 });
             })
