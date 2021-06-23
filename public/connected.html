@@ -8,7 +8,6 @@
         <link rel="stylesheet" href="css/navbar.css">
         <link rel="stylesheet" href="css/footer.css">
         <link rel="stylesheet" href="css/signup.css">
-        <link rel="stylesheet" href="css/signin.css">
         <link rel="stylesheet" href="css/button.css">
         <link rel="stylesheet" href="css/input.css">
         <link rel="stylesheet" href="css/signout.css">
@@ -21,21 +20,22 @@
         <script src="js/cookies.js" defer></script>
         <!-- Script to authenticate -->
         <script src="js/authentification.js" defer></script>
-        <!-- Script to manage signing in -->
-        <script src="js/signin.js" defer></script>
         <!-- Script to load the navbar and footer -->
         <script src="js/load_navbar_and_footer.js" defer></script>
+
+        <!-- Script to manage signing up -->
+       
     </head>
     <body>
         <nav class="navbar">
         </nav>
         <main>
-            <form class="sign-in">
-                <input id="login" class="input-text" placeholder="Pseudo" type="text" required>
-                <input id="password" class="input-text" placeholder="Mot de passe" type="password" required>
-                <span id="info">Info</span>
-                <button type="submit">Se connecter</button>
-                <a href="signup.html" id="signup">S'inscrire</a>
+            <form class="sign-up">
+                <a id="username" class="input-text">Pseudo</a>
+                <a id="first-name" class="input-text">Nom</a>
+                <a id="last-name" class="input-text">Prénom</a>
+                <a id="phone" class="input-text">Téléphone</a>
+                <button id="disconnect" type="button">Se déconnecter</button>
             </form>
         </main>
         <footer class="footer">

@@ -6,10 +6,11 @@ document.getElementsByClassName("sign-in")[0].onsubmit = () => {
 
     validate_login(login, password)
         .then(() => {
-            info.innerHTML = "Vous êtes connecté";
-            info.style.opacity = 1;
+            //info.innerHTML = "Vous êtes connecté";
+            //info.style.opacity = 1;
 
-            log_in();
+            log_in(); //ici jsp si on peut regrouper les deux fonctions
+            change();
             history.go(-1);
         })
         .catch(error => {
@@ -18,4 +19,31 @@ document.getElementsByClassName("sign-in")[0].onsubmit = () => {
         });
 
     return false;
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    change();
+});
+
+function change() {
+    if (Cookies.exists("login") && Cookies.exists("token")) {
+        let main = document.getElementsByTagName("main")[0];
+        
+        let username = Cookies.get("login");
+
+        //faut aller chercher le reste dans la base
+        let first_name = "Prénom"; 
+        let last_name = "Nom";
+        let phone = "Numéro de téléphone";
+    
+        main.innerHTML = `
+            <form class="sign-up">
+                <a id="username" class="input-text">${username}</a>
+                <a id="first-name" class="input-text">${first_name}</a>
+                <a id="last-name" class="input-text">${last_name}</a>
+                <a id="phone" class="input-text">${phone}</a>
+                <button id="disconnect" type="button">Se déconnecter</button>
+            </form>
+    `;
+    }
 }
