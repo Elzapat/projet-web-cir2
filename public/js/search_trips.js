@@ -149,8 +149,8 @@ function display_trips_results(search_city, search_isen, search_date, trips) {
                 <span class="price">Prix : ${trip.prix}€</span>
                 <span class="seats">${nb_places} place${nb_places > 1 ? 's' : ''}</span>
                 <span class="driver">par ${trip.pseudo}</span>
+                <span id="button-trip">
                 <button
-                    id="choise-button"
                     data-start-loc="${depart}"
                     data-end-loc="${arrivee}"
                     data-start-time="${heure_depart}"
@@ -158,7 +158,7 @@ function display_trips_results(search_city, search_isen, search_date, trips) {
                     data-price="${trip.prix}"
                     data-trip-id="${trip.id_trajet}"
                     class="choice"
-                >
+                ></span>
                     Choisir
                 </button>
             </div>

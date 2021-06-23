@@ -202,16 +202,15 @@ select.input-text {
 }
 
 .price {
-    margin-left: 7%;
+    margin-left: 6%;
 }
 
-.choise-button {
+#button-strip {
     margin-left: auto;
 }
 
 .choice {
     width: 7vw;
-    margin-left: auto;
 }
 
 #validation {
