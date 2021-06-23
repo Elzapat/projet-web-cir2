@@ -73,6 +73,7 @@ document.getElementById("publish-trip").onsubmit = event => {
                 throw new Error("Erreur interne");
         })
         .catch(err => {
+            console.log(err);
             info.innerHTML = err.message;
             info.style.opacity = 1;
         })
@@ -134,5 +135,12 @@ async function add_trip(city, isen_city) {
     };
 
     return fetch("../api/v1/request.php/trajets", options)
-        .then(response => response.json())
+        .then(response => {
+            if (response.status == 401)
+                throw new Error("Votre session a expiré, reconnectez vous");
+            else if (!response.ok)
+                throw new Error("Erreur interne");
+
+            return response.text();
+        })
 }
