@@ -33,17 +33,16 @@ function change() {
 
         let user_infos = new Array();
         fetch(`../api/v1/request.php/utilisateurs/${username}`, { method: "GET" })
+            .then(response => response.json())
             .then(user_infos = JSON.parse(response))
-            /*.then(infos => {
-                user_infos.push(infos);
-                console.log(user_infos);
-            })*/
             .catch(err => {
                 info.innerHTML = `Erreur à l'obtention des infos utilisateurs (${err.message})`;
                 info.style.opacity = 1;
             });
 
         console.log(user_infos);
+        var tab_infos = JSON.parse(user_infos);
+        console.log(tab_infos);
         
         //faut aller chercher le reste dans la base
         let first_name = "Prénom"; 
