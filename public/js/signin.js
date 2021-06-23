@@ -35,7 +35,7 @@ function change() {
         fetch(`../api/v1/request.php/utilisateurs/${username}`, { method: "GET" })
             .then(response => response.json())
             .then(infos => {
-                user_infos.push(infos);
+                user_infos.append(infos);
                 console.log(user_infos);
             })
             .catch(err => {
