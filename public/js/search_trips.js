@@ -165,9 +165,9 @@ function display_trips_results(search_city, search_isen, search_date, trips) {
 
     // Validation page when choosing a trip
     for (let button of document.getElementsByClassName("choice")) {
-        button.onclick = event => {
+        button.addEventListener("click", event => {
             display_validation_page(event.target);
-        }
+        });
     }
 
 }
