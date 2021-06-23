@@ -4,8 +4,9 @@
 
 .input-text {
     color: var(--text-color);
+    overflow: scroll;
 }
 
 a {
-    overflow: hidden;
+    overflow: scroll;
 }
