@@ -111,7 +111,27 @@ async function add_trip(city, isen_city) {
     // TODO: use an API to automate this
     let start_time = document.getElementById("time").value.split(':');
     let start_date = document.getElementById("date").value;
-    let duration = "01:30".split(':');
+
+    let end_time = document.getElementById("time-a").value.split(':');
+
+
+    let min_hour_end = parseInt(start_time[0]*60);
+    let min_hour_end = parseInt(end_time[0]*60);
+
+    let min_duration = min_hour_end-min_hour_end;
+    if (min_duration < 0) {
+        min_duration = (24*60)-(min_hour_end-min_hour_end);
+    }
+
+    let hour = min_duration%60;
+    let min = min_duration-(60*hour);
+
+    let hour_s = hour.toString();
+    let min_s = min.toString();
+
+    //let duration = "01:30".split(':');
+    let duration = `${hour_s}:${min_s}`.split(':');
+
     let end_time = [(parseInt(start_time[0]) + parseInt(duration[0])).toString(),
                     (parseInt(start_time[1]) + parseInt(duration[0])).toString()];
     let end_datetime = start_date + ' ' + end_time.join(':');
