@@ -205,12 +205,13 @@ select.input-text {
     margin-left: 6%;
 }
 
-#button-strip {
+.choise-button {
     margin-left: auto;
 }
 
 .choice {
     width: 7vw;
+    margin-left: auto;
 }
 
 #validation {
