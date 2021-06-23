@@ -12,6 +12,7 @@ document.getElementsByClassName("sign-in")[0].onsubmit = () => {
             log_in();
             change_connect_page();
             history.go(-1);
+            console.log(history.previous);
         })
         .catch(error => {
             info.innerHTML = error.message;
