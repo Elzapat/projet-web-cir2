@@ -31,13 +31,13 @@ function change() {
         
         let username = Cookies.get("login");
 
-
         let user_infos = new Array();
         fetch(`../api/v1/request.php/utilisateurs/${username}`, { method: "GET" })
             .then(response => response.json())
             .then(infos => {
                 infos.forEach(inf => {
                     user_infos.push(inf);
+                    console.log(user_infos);
 
                 });
             })
@@ -48,9 +48,6 @@ function change() {
 
         console.log(user_infos[0]);
         console.log(user_infos["prenom"]);
-
-        console.log(inf[0]);
-        console.log(inf["prenom"]);
         
         //faut aller chercher le reste dans la base
         let first_name = "Prénom"; 
