@@ -82,7 +82,6 @@ class dbConnector {
     public function add_trip($creator, $price, $nb_seats, $start_datetime,
             $end_datetime, $duration, $start_address, $end_address, $city, $isen,
             $isen_start) {
-        var_dump($isen_start);
         try {
             $request = "INSERT INTO trajet (adresse_depart, adresse_arrivee,
                             duree_trajet, date_depart, date_arrivee,
