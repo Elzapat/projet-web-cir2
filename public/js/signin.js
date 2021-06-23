@@ -44,7 +44,7 @@ function change() {
             });
 
         console.log(user_infos);
-        var tab_infos = json.parse(user_infos);
+        var tab_infos = JSON.parse(user_infos);
         console.log(tab_infos);
         
         //faut aller chercher le reste dans la base
