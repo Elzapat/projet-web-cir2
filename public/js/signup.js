@@ -31,9 +31,10 @@ document.getElementsByClassName("sign-up")[0].onsubmit = () => {
             .then(response => response.text())
             .then(creation_success => {
                 if (!creation_success)
-                    throw new Error("Errur à la création du compte");
-                info.innerHTML = "Compte créé avec succès";
-                info.style.opacity = 1;
+                    throw new Error("Erreur à la création du compte");
+                //info.innerHTML = "Compte créé avec succès";
+                //info.style.opacity = 1;
+                history.go(-1);
             });
         })
         .catch(error => {

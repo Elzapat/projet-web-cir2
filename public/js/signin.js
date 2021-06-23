@@ -9,7 +9,7 @@ document.getElementsByClassName("sign-in")[0].onsubmit = () => {
             //info.innerHTML = "Vous êtes connecté";
             //info.style.opacity = 1;
 
-            log_in(); //ici jsp si on peut regrouper les deux fonctions
+            log_in();
             change();
             history.go(-1);
         })
