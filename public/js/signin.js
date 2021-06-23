@@ -37,6 +37,7 @@ function change() {
             .then(infos => {
                 infos.forEach(loc => {
                     user_infos.push(loc["nom"]);
+                    console.log(loc["nom"]);
                     console.log(user_infos);
                 });
             })
