@@ -196,7 +196,7 @@ class dbConnector {
 
     public function get_user_infos($username) {
         try {
-            $request = "SELECT pseudo, prenom, nom, num_tel FROM utilisateur WHERE pseudo=:username";
+            $request = "SELECT prenom, nom, num_tel FROM utilisateur WHERE pseudo=:username";
             $stmt = $this->db->prepare($request);
             $stmt->bindParam(":username", $username, PDO::PARAM_STR);
             $stmt->execute();
@@ -206,7 +206,7 @@ class dbConnector {
             return null;
         }
 
-        return $result != null;
+        return $result;
     }
 }
 
