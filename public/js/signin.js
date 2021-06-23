@@ -43,8 +43,9 @@ function change() {
                 info.style.opacity = 1;
             });
 
-        console.log(user_infos[0][0]);
-
+        console.log(user_infos);
+        var tab_infos = json.parse(user_infos);
+        console.log(tab_infos);
         
         //faut aller chercher le reste dans la base
         let first_name = "Prénom"; 
