@@ -13,9 +13,16 @@ document.getElementsByClassName("sign-in")[0].onsubmit = () => {
             change_connect_page();
             var prev = document.referrer;
             prev_word = prev.split('/');
+            
+            console.log(prev);
+            console.log(prev_word);
+            console.log(prev_word[prev_word.length]);
+
             if (prev_word[prev_word.length] != "signup.html") {
-                history.go(-1);
+                //history.go(-1);
+                console.log("history -1");
             }
+            console.log("not in if");
         })
         .catch(error => {
             info.innerHTML = error.message;
