@@ -70,12 +70,11 @@ main {
     padding: 1%;
     padding-left: 5%;
     padding-right: 5%;
-    border: solid 2px var(--accent-color);
+    border: solid 2px var(--text-color);
 }
 
 #no-connect:hover {
-    color: rgb(255, 255, 255);
     cursor: pointer;
-    background-color: var(--accent-color);
+    border: solid 2px var(--accent-color);
     transition: 0.3s ease;
 }
