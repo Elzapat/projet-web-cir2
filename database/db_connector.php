@@ -1,7 +1,5 @@
 <?php
 
-include_once "../constants.php";
-
 class dbConnector {
     private $db;
 
@@ -87,7 +85,7 @@ class dbConnector {
         try {
             $request = "INSERT INTO trajet (adresse_depart, adresse_arrivee,
                             duree_trajet, date_depart, date_arrivee,
-                            prix, nb_places_restances, nb_places, depart_isen,
+                            prix, nb_places_restantes, nb_places, depart_isen,
                             pseudo, code_insee, code_insee_site_isen)
                         VALUES
                         (:start_address, :end_address, :duration, :start_datetime,
@@ -98,13 +96,13 @@ class dbConnector {
             $stmt->bindParam(":end_address", $end_address, PDO::PARAM_STR, 255);
             $stmt->bindParam(":duration", $duration, PDO::PARAM_STR, 10);
             $stmt->bindParam(":start_datetime", $start_datetime, PDO::PARAM_STR, 20);
-            $stmt->bindParam(":end_datetime", $end_datime, PDO::PARAM_STR, 20);
+            $stmt->bindParam(":end_datetime", $end_datetime, PDO::PARAM_STR, 20);
             $stmt->bindParam(":price", $price, PDO::PARAM_STR, 10);
             $stmt->bindParam(":nb_seats", $nb_seats, PDO::PARAM_INT);
             $stmt->bindParam(":isen_start", $isen_start, PDO::PARAM_INT);
             $stmt->bindParam(":creator", $creator, PDO::PARAM_STR, 25);
-            $start = $isen_start ? $isen : $start;
-            $end = $isen_start ? $start : $isen;
+            $start = $isen_start ? $isen : $city;
+            $end = $isen_start ? $city : $isen;
             $stmt->bindParam(":start", $start, PDO::PARAM_STR, 100);
             $stmt->bindParam(":end", $end, PDO::PARAM_STR, 100);
             $stmt->execute();
@@ -168,15 +166,15 @@ class dbConnector {
         try {
             $request = "SELECT pseudo FROM utilisateur WHERE jeton_auth=:token";
             $stmt = $this->db->prepare($request);
-            $stmt->bindParam(":token", $token, PDO::FETCH, 20);
+            $stmt->bindParam(":token", $token, PDO::PARAM_STR, 20);
             $stmt->execute();
-            $result = $stmt->fetch();
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
             error_log("Request error: " . $e->getMessage());
             return false;
         }
 
-        return isset($result) ? $result["pseudo"] : false;
+        return isset($result) ? $result[0]["pseudo"] : false;
     }
 
     public function check_username_existence($username) {
@@ -198,7 +196,23 @@ class dbConnector {
         try {
             $request = "SELECT prenom, nom, num_tel FROM utilisateur WHERE pseudo=:username";
             $stmt = $this->db->prepare($request);
-            $stmt->bindParam(":username", $username, PDO::PARAM_STR);
+            $stmt->bindParam(":username", $username, PDO::PARAM_STR, 25);
+            $stmt->execute();
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            error_log("Request error: " . $e->getMessage());
+            return false;
+        }
+
+        return isset($result) ? $result : false;
+    }
+
+    public function get_city_info($name) {
+        try {
+            $request = "SELECT * FROM ville
+                        WHERE nom LIKE :query";
+            $stmt = $this->db->prepare($request);
+            $stmt->bindParam(":query", $name, PDO::PARAM_STR, 100);
             $stmt->execute();
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
@@ -206,7 +220,7 @@ class dbConnector {
             return null;
         }
 
-        return $result;
+        return isset($result) && count($result) > 0 ? $result[0] : false;
     }
 }
 

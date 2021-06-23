@@ -22,12 +22,12 @@
         <script src="js/authentification.js" defer></script>
         <!-- Script to load the navbar and footer -->
         <script src="js/load_navbar_and_footer.js" defer></script>
-        <!-- Script to manage the search form -->
-        <script src="js/search_trips.js" defer></script>
         <!-- Script to manage the connection -->
         <script src="js/publish.js" defer></script>
         <!-- Script to add an autocomplete list under the location input -->
         <script src="js/autocomplete_addresses.js" defer></script>
+        <!-- Script to manager the two ISEN buttons -->
+        <script src="js/isen_buttons.js" defer></script>
     </head>
     <body>
         <nav class="navbar">
@@ -35,26 +35,26 @@
         <main>
             <form id="publish-trip">
                 <div class="publish-row">
-                    <button value="from_ISEN" class="dest-choice" type="button">Partir à l'ISEN</button>
+                    <button value="from_ISEN" class="dest-choice" type="button">Partir de l'ISEN</button>
                     <button value="to_ISEN" class="dest-choice" type="button">Allez à l'ISEN</button>
                 </div>
                 <div class="publish-row">
                     <div id="start-loc" class="loc-p">
-                        <input id="start-input" class="input-text" placeholder="Adresse de départ" type="text" oninput="autocomplete_addresses(event)" required>
+                        <input autocomplete="off" id="start-input" class="input-text" placeholder="Adresse de départ" type="text" oninput="autocomplete_addresses(event)" required>
                     </div>
                     <div id="end-loc" class="loc-p">
-                        <input id="end-input" class="input-text" placeholder="Adresse d'arrivée" type="text" oninput="autocomplete_addresses(event)" required>
+                        <input autocomplete="off" id="end-input" class="input-text" placeholder="Adresse d'arrivée" type="text" oninput="autocomplete_addresses(event)" required>
                     </div>
                 </div>
 
                 <div class="publish-row">
-                    <input class="input-text" placeholder="Date de départ" type="date" required>
-                    <input class="input-text" placeholder="Heure de départ" type="time" required>
+                    <input id="date" class="input-text" placeholder="Date de départ" type="date" required>
+                    <input id="time" class="input-text" placeholder="Heure de départ" type="time" required>
                 </div>
 
                 <div class="publish-row">
-                    <input class="input-text" placeholder="Nombre de places" type="number" min="1" max="10" required>
-                    <input class="input-text" placeholder="Prix" type="number" min="0" max="100" required>
+                    <input id="seats" class="input-text" placeholder="Nombre de places" type="number" min="1" max="10" required>
+                    <input id="price" class="input-text" placeholder="Prix" type="number" min="0" max="100" required>
                 </div>
 
                 <a id="no-connect" style="display:none" href="signin.html">Vous n'êtes pas connecté</a>
